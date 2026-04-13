@@ -1,0 +1,10 @@
+{
+  "label": "Java",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "title": "Java",
+    "description": "Build and package Frank!Framework as a Java application (WAR/EAR)."
+  }
+}
+

@@ -1,0 +1,14 @@
+.navbar {
+    padding: 2rem 3rem;
+    height: fit-content;
+    box-shadow: unset;
+}
+
+.navbar--fixed-top {
+    position: inherit;
+}
+
+.navbar__title {
+    font-size: 1.1rem;
+    font-weight: 700;
+}

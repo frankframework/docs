@@ -1,0 +1,45 @@
+.docCardListItem {
+  margin-bottom: 1rem;
+}
+
+.docCardListItem > * {
+  height: 100%;
+}
+
+.cardContainer {
+  --ifm-link-color: var(--ifm-color-emphasis-800);
+  --ifm-link-hover-color: var(--ifm-color-emphasis-700);
+  --ifm-link-hover-decoration: none;
+
+  display: block;
+  height: 100%;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  box-shadow: 0 1.5px 3px 0 rgb(0 0 0 / 15%);
+  transition: border-color var(--ifm-transition-fast) ease,
+    box-shadow var(--ifm-transition-fast) ease;
+}
+
+.cardContainer:hover,
+.cardContainer:focus-visible {
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 3px 6px 0 rgb(0 0 0 / 20%);
+}
+
+.cardTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.6rem;
+}
+
+.cardTitleIcon {
+  line-height: 1;
+}
+
+.cardTitleText {
+  min-width: 0;
+}
+
+.cardDescription {
+  margin-bottom: 0;
+}
