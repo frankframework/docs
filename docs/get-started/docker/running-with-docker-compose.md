@@ -1,9 +1,8 @@
 ---
 sidebar_position: 1
-title: Run with Docker Compose
+title: Running with Docker Compose
+description: Set up and run Frank!Framework, Frank!Flow, and Swagger UI using Docker Compose.
 ---
-
-# Run with Docker Compose
 
 The Docker Compose setup includes:
 

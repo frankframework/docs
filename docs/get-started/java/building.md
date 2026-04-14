@@ -1,9 +1,8 @@
 ---
 sidebar_position: 1
 title: Building a WAR Archive
+description: Use Maven parent POMs to build a Frank!Framework WAR or EAR archive.
 ---
-
-# Building a WAR Archive
 
 As a Maven project, the easiest way to use Frank!Framework is to use one of the starter parent POMs. The minimal or full bundle avoids manually managing required modules and version locking for application servers.
 

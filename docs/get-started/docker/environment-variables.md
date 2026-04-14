@@ -1,9 +1,8 @@
 ---
 sidebar_position: 3
 title: Environment Variables
+description: Configure Frank!Framework properties using environment variables in Docker Compose.
 ---
-
-# Environment Variables
 
 Environment variables can be used to set properties. They have the highest precedence and override application properties set in `.properties` files from Tomcat, resources, and configurations.
 

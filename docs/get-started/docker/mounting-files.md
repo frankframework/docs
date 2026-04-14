@@ -1,9 +1,8 @@
 ---
 sidebar_position: 2
 title: Mounting Files
+description: Mount configuration files, resources, secrets, and drivers into the Frank!Framework Docker container.
 ---
-
-# Mounting Files
 
 The Frank!Framework container uses several well-known directories and files. You can mount these to provide your own content.
 

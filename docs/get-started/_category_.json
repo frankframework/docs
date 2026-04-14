@@ -4,6 +4,7 @@
   "link": {
     "type": "generated-index",
     "title": "Get Started",
-    "description": "Step-by-step quick start chapters for building and running Frank!Framework."
+    "slug": "/get-started",
+    "description": "Choose your deployment method and get up and running with Frank!Framework in minutes."
   }
 }

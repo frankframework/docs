@@ -1,9 +1,8 @@
 ---
 sidebar_position: 4
 title: Health and Readiness
+description: Monitor container health using the Frank!Framework health API and Docker healthchecks.
 ---
-
-# Health and Readiness
 
 Monitor container health by polling `/iaf/api/server/health`:
 

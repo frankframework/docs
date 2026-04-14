@@ -1,7 +1,6 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
-import DocCard from "@site/src/components/DocCard";
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -27,6 +26,12 @@ const config: Config = {
   projectName: 'frankframework', // Usually your repo name.
 
   onBrokenLinks: 'throw',
+
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: 'warn',
+    },
+  },
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -76,9 +81,9 @@ const config: Config = {
         },
         {href: 'https://frank-manual.readthedocs.io/', label: 'Frank!Manual', position: 'left'},
         {href: 'https://frankdoc.frankframework.org/', label: 'Reference', position: 'left'},
-        {href: 'https://frankacademy.nl/', label: 'Frank!Acadamy', position: 'left'},
+        {href: 'https://frankacademy.nl/', label: 'Frank!Academy', position: 'left'},
         {
-          href: 'https://github.com/frankframework/frankframework',
+          href: 'https://github.com/frankframework',
           label: 'GitHub',
           position: 'right',
         },
@@ -87,11 +92,19 @@ const config: Config = {
     footer: {
       links: [
         {
-          title: 'Docs',
+          title: 'Documentation',
           items: [
             {
               label: 'Get Started',
-              to: '/docs/category/get-started',
+              to: '/docs/get-started',
+            },
+            {
+              label: 'Frank!Manual',
+              href: 'https://frank-manual.readthedocs.io/',
+            },
+            {
+              label: 'Reference',
+              href: 'https://frankdoc.frankframework.org/',
             },
           ],
         },
@@ -99,16 +112,8 @@ const config: Config = {
           title: 'Community',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'X',
-              href: 'https://x.com/docusaurus',
+              label: 'GitHub Discussions',
+              href: 'https://github.com/frankframework/frankframework/discussions',
             },
           ],
         },
@@ -122,6 +127,14 @@ const config: Config = {
             {
               label: 'GitHub',
               href: 'https://github.com/frankframework',
+            },
+            {
+              label: 'Docker Hub',
+              href: 'https://hub.docker.com/r/frankframework/frankframework',
+            },
+            {
+              label: 'Frank!Academy',
+              href: 'https://frankacademy.nl/',
             },
           ],
         },

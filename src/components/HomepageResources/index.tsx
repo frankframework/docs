@@ -7,10 +7,10 @@ export default function Resources(): ReactNode {
     <section className={styles.resources}>
       <div className="container">
         <div className="row">
-          <DocCard href='/docs/category/get-started' title='Get Started' description='Learn Frank!Framework basics.' />
-          <DocCard href='https://frank-manual.readthedocs.io/' title='Manual' description='Indepth manual and tutorials.' />
-          <DocCard href='https://frankdoc.frankframework.org/' title='Reference' description='Technical documentation of our FF! Components.' />
-          <DocCard href='https://frankacademy.nl/' title='Frank!Academy' description='Free training and certification provided by WeAreFrank!.' />
+          <DocCard href='/docs/get-started' title='Get Started' description='Get up and running with Frank!Framework in minutes.' />
+          <DocCard href='https://frank-manual.readthedocs.io/' title='Manual' description='In-depth manual and tutorials.' />
+          <DocCard href='https://frankdoc.frankframework.org/' title='Reference' description='Technical documentation of FF! components.' />
+          <DocCard href='https://frankacademy.nl/' title='Frank!Academy' description='Free training and certification by WeAreFrank!.' />
         </div>
       </div>
     </section>
