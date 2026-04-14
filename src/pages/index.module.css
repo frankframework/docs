@@ -10,8 +10,26 @@
   overflow: hidden;
 }
 
+.titleWithLogo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.titleLogo {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 0.4rem;
+  object-fit: contain;
+}
+
 @media screen and (max-width: 996px) {
   .heroBanner {
     padding: 2rem;
+  }
+
+  .titleLogo {
+    width: 2rem;
+    height: 2rem;
   }
 }

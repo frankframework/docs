@@ -1,6 +1,5 @@
 import type {ReactNode} from 'react';
 import clsx from 'clsx';
-import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import Resources from '@site/src/components/HomepageResources';
@@ -14,7 +13,14 @@ function HomepageHeader() {
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
         <Heading as="h1" className="hero__title">
-          {siteConfig.title}
+          <span className={styles.titleWithLogo}>
+            <img
+              src="/img/ff!-icon-black.svg"
+              alt="FF!"
+              className={styles.titleLogo}
+            />
+            docs
+          </span>
         </Heading>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
       </div>
@@ -23,7 +29,6 @@ function HomepageHeader() {
 }
 
 export default function Home(): ReactNode {
-  const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
       description="The official documentation for the Frank!Framework">

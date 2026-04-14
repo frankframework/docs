@@ -1,11 +1,8 @@
 .navbar {
-    padding: 2rem 3rem;
-    height: fit-content;
+    --ifm-navbar-height: fit-content;
+    --ifm-navbar-padding-vertical: 2rem;
+    --ifm-navbar-padding-horizontal: 3rem;
     box-shadow: unset;
-}
-
-.navbar--fixed-top {
-    position: inherit;
 }
 
 .navbar__title {
