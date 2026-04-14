@@ -9,7 +9,7 @@ export default function Resources(): ReactNode {
         <div className="row">
           <DocCard href='/docs/category/get-started' title='Get Started' description='Learn Frank!Framework basics.' />
           <DocCard href='https://frank-manual.readthedocs.io/' title='Manual' description='Indepth manual and tutorials.' />
-          <DocCard href='https://frankdoc.frankframework.org/' title='Referance' description='Technical documentation of our FF! Components.' />
+          <DocCard href='https://frankdoc.frankframework.org/' title='Reference' description='Technical documentation of our FF! Components.' />
           <DocCard href='https://frankacademy.nl/' title='Frank!Academy' description='Free training and certification provided by WeAreFrank!.' />
         </div>
       </div>
