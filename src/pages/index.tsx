@@ -10,21 +10,24 @@ import styles from './index.module.css';
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
-      <div className="container">
-        <Heading as="h1" className="hero__title">
-          <span className={styles.titleWithLogo}>
-            <img
-              src="/img/ff!-icon-black.svg"
-              alt="FF!"
-              className={styles.titleLogo}
-            />
-            docs
-          </span>
-        </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-      </div>
-    </header>
+      <>
+        <header className={clsx('hero hero--primary', styles.heroBanner)}>
+          <div className="container">
+            <Heading as="h1" className="hero__title">
+              <span className={styles.titleWithLogo}>
+                <img
+                  src="/img/ff!-icon-black.svg"
+                  alt="FF!"
+                  className={styles.titleLogo}
+                />
+                docs
+              </span>
+            </Heading>
+            <p className="hero__subtitle">{siteConfig.tagline}</p>
+          </div>
+        </header>
+        <div className="next-section"></div>
+    </>
   );
 }
 
