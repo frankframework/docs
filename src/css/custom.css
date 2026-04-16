@@ -23,6 +23,9 @@
 
     --ifm-background-color: #fff;
     --ifm-footer-background-color: #f4f4f4;
+
+    --ifm-navbar-height: 6rem;
+    --ifm-navbar-padding-horizontal: 3rem;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */

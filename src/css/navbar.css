@@ -1,7 +1,4 @@
 .navbar {
-    --ifm-navbar-height: fit-content;
-    --ifm-navbar-padding-vertical: 2rem;
-    --ifm-navbar-padding-horizontal: 3rem;
     box-shadow: unset;
 }
 
