@@ -141,10 +141,26 @@ const config: Config = {
       ],
       copyright: `© ${new Date().getFullYear()} Frank!Framework`,
     },
+    algolia: {
+      appId: 'H18WHKAMRM',
+      // Public API key: it is safe to commit it
+      apiKey: '22bd7a1f4a7ec802a49375757a7af7c1',
+
+      indexName: 'FF! Docs',
+      contextualSearch: true,
+
+      // externalUrlRegex: 'example\\.com|domain\\.com',
+    },
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
     },
+    metadata: [
+      {
+        name: 'algolia-site-verification',
+        content: '2D87C4BF471503E1',
+      },
+    ],
   } satisfies Preset.ThemeConfig,
 };
 
