@@ -149,7 +149,7 @@ const config: Config = {
       indexName: 'FF! Docs',
       contextualSearch: true,
 
-      // externalUrlRegex: 'example\\.com|domain\\.com',
+      externalUrlRegex: 'frank-manual\\.readthedocs\\.io',
     },
     prism: {
       theme: prismThemes.github,
