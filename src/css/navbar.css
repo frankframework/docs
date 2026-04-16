@@ -14,3 +14,29 @@
     font-size: 1.1rem;
     font-weight: 700;
 }
+
+/* Navbar Algolia search – match DocCard style */
+.navbar .DocSearch-Button {
+    border: 1px solid var(--ifm-color-emphasis-200);
+    border-radius: var(--ifm-card-border-radius);
+    box-shadow: 0 1.5px 3px 0 rgb(0 0 0 / 15%);
+    transition: border-color var(--ifm-transition-fast) ease,
+        box-shadow var(--ifm-transition-fast) ease;
+    background: var(--ifm-background-color);
+    padding: 0.4rem 0.8rem;
+}
+
+.navbar .DocSearch-Button:hover,
+.navbar .DocSearch-Button:focus-visible {
+    border-color: var(--ifm-color-primary);
+    box-shadow: 0 3px 6px 0 rgb(0 0 0 / 20%);
+}
+
+.navbar .DocSearch-Search-Icon {
+    color: var(--ifm-color-emphasis-600);
+}
+
+.navbar .DocSearch-Button-Placeholder {
+    color: var(--ifm-color-emphasis-500);
+}
+

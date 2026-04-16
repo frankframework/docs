@@ -23,6 +23,46 @@
   object-fit: contain;
 }
 
+.heroSearch {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.heroSearch > div {
+  width: 100%;
+  max-width: 36rem;
+}
+
+/* Make the Algolia search button look like a big input, matching DocCard style */
+.heroSearch :global(.DocSearch-Button) {
+  width: 66%;
+  margin: 0;
+  padding: 0.9rem 1.2rem;
+  border-radius: var(--ifm-card-border-radius);
+  font-size: 1.1rem;
+  background: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  box-shadow: 0 1.5px 3px 0 rgb(0 0 0 / 15%);
+  transition: border-color var(--ifm-transition-fast) ease,
+    box-shadow var(--ifm-transition-fast) ease;
+}
+
+.heroSearch :global(.DocSearch-Button:hover),
+.heroSearch :global(.DocSearch-Button:focus-visible) {
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 3px 6px 0 rgb(0 0 0 / 20%);
+}
+
+.heroSearch :global(.DocSearch-Button-Placeholder) {
+  font-size: 1.1rem;
+}
+
+.heroSearch :global(.DocSearch-Button-Keys) {
+  display: flex;
+}
+
 @media screen and (max-width: 996px) {
   .heroBanner {
     padding: 2rem;
@@ -31,5 +71,19 @@
   .titleLogo {
     width: 2rem;
     height: 2rem;
+  }
+
+  .heroSearch :global(.DocSearch-Button) {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    font-size: 1rem;
+  }
+
+  .heroSearch :global(.DocSearch-Button-Placeholder) {
+    font-size: 1rem;
+  }
+
+  .heroSearch :global(.DocSearch-Button-Keys) {
+    display: none;
   }
 }

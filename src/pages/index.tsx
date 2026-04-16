@@ -4,6 +4,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import Resources from '@site/src/components/HomepageResources';
 import Heading from '@theme/Heading';
+import SearchBar from '@theme/SearchBar';
 
 import styles from './index.module.css';
 
@@ -24,6 +25,9 @@ function HomepageHeader() {
               </span>
             </Heading>
             <p className="hero__subtitle">{siteConfig.tagline}</p>
+            <div className={styles.heroSearch}>
+              <SearchBar />
+            </div>
           </div>
         </header>
         <div className="next-section"></div>
