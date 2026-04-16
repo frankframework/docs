@@ -145,10 +145,9 @@ const config: Config = {
       appId: 'H18WHKAMRM',
       // Public API key: it is safe to commit it
       apiKey: '22bd7a1f4a7ec802a49375757a7af7c1',
-
       indexName: 'FF! Docs',
-      contextualSearch: true,
-
+      // Context filters will filter out the external sites. So I disabled it. We can enable it in the future but will have to make a recordExtractor.
+      contextualSearch: false,
       externalUrlRegex: 'frank-manual\\.readthedocs\\.io',
     },
     prism: {
