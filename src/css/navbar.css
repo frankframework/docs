@@ -5,6 +5,14 @@
     box-shadow: unset;
 }
 
+[data-theme='light'] {
+    --ifm-navbar-background-color: #ffffff;
+}
+
+[data-theme='dark'] {
+    --ifm-navbar-background-color: #1e1e1e;
+}
+
 .navbar__title {
     font-size: 1.1rem;
     font-weight: 700;
