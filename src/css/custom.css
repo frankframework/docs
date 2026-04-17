@@ -28,6 +28,10 @@
     --ifm-navbar-padding-horizontal: 3rem;
 }
 
+::selection {
+    background: #fdc30033;
+}
+
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
     --ifm-color-primary: #fdc300;

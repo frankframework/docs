@@ -25,6 +25,7 @@ function HomepageHeader() {
               </span>
             </Heading>
             <p className="hero__subtitle">{siteConfig.tagline}</p>
+            <p className={styles.searchHint}>Search the docs, manual, and more</p>
             <div className={styles.heroSearch}>
               <SearchBar />
             </div>
