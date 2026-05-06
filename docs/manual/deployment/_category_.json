@@ -4,7 +4,7 @@
   "link": {
     "type": "generated-index",
     "title": "Deployment",
-    "slug": "/deployment",
+    "slug": "/manual/deployment",
     "description": "Deploying and securing Frank!Framework applications."
   }
 }

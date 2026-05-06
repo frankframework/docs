@@ -1,12 +1,11 @@
 ---
-slug: /
 sidebar_position: 0
-title: Frank!Framework Documentation
+title: Introduction
 ---
 
-# Frank!Framework Documentation
+# Introduction
 
-Reference documentation for the [Frank!Framework](https://github.com/frankframework/frankframework) — an open-source platform for building enterprise integration applications.
+Documentation for the [Frank!Framework](https://github.com/frankframework/frankframework) — an open-source platform for building enterprise integration applications.
 
 ## Sections
 
@@ -19,7 +18,7 @@ Reference documentation for the [Frank!Framework](https://github.com/frankframew
 ## Resources
 
 - [Frank!Framework source code](https://github.com/frankframework/frankframework)
-- [Frank!Doc (API reference)](https://frankdoc.frankframework.org)
+- [FF! Reference](https://reference.frankframework.org)
 - [Release notes](https://github.com/frankframework/frankframework/releases)
 - [Community discussions](https://github.com/frankframework/frankframework/discussions)
 - [Docker image documentation](https://github.com/frankframework/frankframework/blob/master/Docker.md)

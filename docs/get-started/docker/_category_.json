@@ -3,6 +3,7 @@
   "position": 1,
   "link": {
     "type": "generated-index",
+    "slug": "/get-started/docker",
     "title": "Docker",
     "description": "The fastest way to get started. Run Frank!Framework using Docker and Docker Compose."
   }
