@@ -2,8 +2,10 @@
   "label": "Configuration",
   "position": 2,
   "link": {
-    "type": "doc",
-    "id": "configuration/index"
+    "type": "generated-index",
+    "title": "Configuration",
+    "slug": "/configuration",
+    "description": "Writing and structuring Frank!Framework configurations."
   }
 }
 

@@ -2,8 +2,10 @@
   "label": "Operations",
   "position": 5,
   "link": {
-    "type": "doc",
-    "id": "operations/index"
+    "type": "generated-index",
+    "title": "Operations",
+    "slug": "/operations",
+    "description": "Operating and monitoring Frank!Framework applications."
   }
 }
 

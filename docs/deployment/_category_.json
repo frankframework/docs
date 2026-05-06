@@ -2,8 +2,10 @@
   "label": "Deployment",
   "position": 3,
   "link": {
-    "type": "doc",
-    "id": "deployment/index"
+    "type": "generated-index",
+    "title": "Deployment",
+    "slug": "/deployment",
+    "description": "Deploying and securing Frank!Framework applications."
   }
 }
 

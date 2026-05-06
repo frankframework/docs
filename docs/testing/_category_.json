@@ -2,8 +2,10 @@
   "label": "Testing",
   "position": 4,
   "link": {
-    "type": "doc",
-    "id": "testing/index"
+    "type": "generated-index",
+    "title": "Testing",
+    "slug": "/testing",
+    "description": "Testing tools for Frank!Framework configurations."
   }
 }
 
