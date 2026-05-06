@@ -10,7 +10,7 @@ The Docker Compose setup includes:
 - **Frank!Flow**: visual configuration tool
 - **Swagger UI**: API documentation viewer
 
-Production-ready containers are pushed to the [Nexus Repository Manager](https://nexus.frankframework.org/) `frankframework-docker` repository. Helm charts are available in the [charts repository](https://github.com/frankframework/charts).
+Production-ready containers are pushed to [Docker Hub: frankframework/frankframework](https://hub.docker.com/r/frankframework/frankframework) and the [Nexus Repository Manager](https://nexus.frankframework.org/) `frankframework-docker` repository. Helm charts are available in the [charts repository](https://github.com/frankframework/charts).
 
 ## Prerequisites
 

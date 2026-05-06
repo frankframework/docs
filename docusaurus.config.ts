@@ -66,11 +66,11 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'docs',
       logo: {
         alt: 'FF!',
         src: 'img/ff!-icon-yellow.svg',
       },
+      title: 'docs',
       hideOnScroll: true,
       items: [
         {
@@ -79,8 +79,13 @@ const config: Config = {
           position: 'left',
           label: 'Get Started',
         },
-        {href: 'https://frank-manual.readthedocs.io/', label: 'Frank!Manual', position: 'left'},
-        {href: 'https://frankdoc.frankframework.org/', label: 'Reference', position: 'left'},
+        {
+          type: 'docSidebar',
+          sidebarId: 'manualSidebar',
+          position: 'left',
+          label: 'Manual',
+        },
+        {href: 'https://reference.frankframework.org/', label: 'Reference', position: 'left'},
         {href: 'https://frankacademy.nl/', label: 'Frank!Academy', position: 'left'},
         {
           href: 'https://github.com/frankframework',
@@ -99,12 +104,16 @@ const config: Config = {
               to: '/docs/get-started',
             },
             {
-              label: 'Frank!Manual',
+              label: 'Manual',
+              to: '/docs/manual',
+            },
+            {
+              label: 'Old Frank!Manual',
               href: 'https://frank-manual.readthedocs.io/',
             },
             {
               label: 'Reference',
-              href: 'https://frankdoc.frankframework.org/',
+              href: 'https://reference.frankframework.org/',
             },
           ],
         },

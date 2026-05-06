@@ -1,0 +1,11 @@
+{
+  "label": "Deployment",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "title": "Deployment",
+    "slug": "/manual/deployment",
+    "description": "Deploying and securing Frank!Framework applications."
+  }
+}
+

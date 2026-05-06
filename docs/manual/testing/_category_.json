@@ -1,0 +1,11 @@
+{
+  "label": "Testing",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "title": "Testing",
+    "slug": "/manual/testing",
+    "description": "Testing tools for Frank!Framework configurations."
+  }
+}
+
