@@ -10,11 +10,11 @@ Reference documentation for the [Frank!Framework](https://github.com/frankframew
 
 ## Sections
 
-- [Configuration](configuration/index.md) — Writing Frank configurations (XML structure, pipes, senders, properties, database access)
-- [Deployment](deployment/index.md) — Deploying Frank applications (Docker, DTAP, security, credentials, JMS, logging)
-- [Testing](testing/index.md) — Testing tools (Larva unit tests, Ladybug debugger)
-- [Operations](operations/index.md) — Operating and monitoring Frank applications
-- [Troubleshooting](troubleshooting/index.md) — Common issues and solutions
+- [Configuration](configuration) — Writing Frank configurations (XML structure, pipes, senders, properties, database access)
+- [Deployment](deployment) — Deploying Frank applications (Docker, DTAP, security, credentials, JMS, logging)
+- [Testing](testing) — Testing tools (Larva unit tests, Ladybug debugger)
+- [Operations](operations) — Operating and monitoring Frank applications
+- [Troubleshooting](troubleshooting) — Common issues and solutions
 
 ## Resources
 

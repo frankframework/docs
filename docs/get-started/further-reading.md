@@ -6,7 +6,8 @@ description: Additional resources, guides, and community links for Frank!Framewo
 
 ## Documentation
 
-- [Frank!Manual](https://frank-manual.readthedocs.io): comprehensive Frank!Framework documentation and tutorials
+- [Configuration](/docs/configuration): comprehensive Frank!Framework configuration documentation
+- [Deployment](/docs/deployment): deployment guides and tutorials
 - [Frank!Framework with Docker](https://github.com/frankframework/frankframework/blob/master/DOCKER.md): in-depth Docker image usage, filesystem, logging, environment variables, secrets, and drivers
 
 ## Deployment

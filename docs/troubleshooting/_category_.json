@@ -2,8 +2,10 @@
   "label": "Troubleshooting",
   "position": 6,
   "link": {
-    "type": "doc",
-    "id": "troubleshooting/index"
+    "type": "generated-index",
+    "title": "Troubleshooting",
+    "slug": "/troubleshooting",
+    "description": "Common issues and solutions for Frank!Framework."
   }
 }
 
