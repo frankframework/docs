@@ -31,7 +31,7 @@ You define your integrations in XML configuration files. The framework loads the
 </Adapter>
 ```
 
-This creates an HTTP endpoint at `/api/hello` that responds with "Hello, World!". See the [`FixedResultPipe` reference](https://reference.frankframework.org/#/Components/Pipes/FixedResultPipe) for all available attributes.
+This creates an HTTP endpoint at `/api/hello` that responds with "Hello, World!". See the [`FixedResultPipe` reference](https://reference.frankframework.org/#/components/FixedResultPipe) for all available attributes.
 
 ## Choose Your Setup
 

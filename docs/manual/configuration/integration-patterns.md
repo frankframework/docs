@@ -2,7 +2,7 @@
 
 The Frank!Framework connects applications from different vendors, transforming requests and responses between otherwise incompatible systems. This document covers patterns and features for protecting data integrity during integration.
 
-For details on the pipes and senders used in these examples, see the [FF! Reference](https://reference.frankframework.org/#/Components/Pipes).
+For details on the pipes and senders used in these examples, see the [FF! Reference](https://reference.frankframework.org/#/components).
 
 ## Request/Reply
 
