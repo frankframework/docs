@@ -259,7 +259,7 @@ Place this file in the configuration directory. It defines schema changes as ord
 
 Important rules:
 - Never modify existing changesets after they have been applied. Always add new changesets.
-- The default datasource when using Frank!Runner is `jdbc/{instance-name}` (e.g., `jdbc/frank2manual`).
+- The default datasource when using Frank!Runner is `jdbc/${instance.name.lc}` (e.g., `jdbc/frank2manual`).
 - Use `DROP ALL OBJECTS` via JDBC Execute Query to reset an H2 database during development.
 
 ## XML Validation with XSD
