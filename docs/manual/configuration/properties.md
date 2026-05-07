@@ -1,6 +1,6 @@
 # Properties
 
-Properties are name/value pairs that configure Frank!Framework behavior and allow Frank configurations to adapt to different deployment environments.
+Properties are name/value pairs that configure Frank!Framework behavior and allow Frank configurations to adapt to different deployment environments. For a complete and up-to-date list of all available properties, see the [FF! Reference](https://reference.frankframework.org/#/properties).
 
 ## Property Syntax and Referencing
 

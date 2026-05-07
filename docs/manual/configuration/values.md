@@ -11,7 +11,7 @@ Session keys act as variables that hold the same kind of data as the message flo
 - `originalMessage` — the pipeline's input message
 - `httpMethod` — the HTTP method (when using an `ApiListener`)
 
-Custom session keys can be written with `PutInSessionPipe`:
+Custom session keys can be written with [`PutInSessionPipe`](https://reference.frankframework.org/#/Components/Pipes/PutInSessionPipe):
 
 ```xml
 <PutInSessionPipe name="save" sessionKey="saved"/>
@@ -84,7 +84,7 @@ Only the `<Param>` element can obtain context key values. The parameter must the
 
 ## ReplacerPipe Pattern Substitution
 
-`ReplacerPipe` substitutes both property references (`${...}`) and parameter references (`?{...}`) in its input. When the `find` attribute is omitted, no text replacement occurs — only property and parameter substitution.
+[`ReplacerPipe`](https://reference.frankframework.org/#/Components/Pipes/ReplacerPipe) substitutes both property references (`${...}`) and parameter references (`?{...}`) in its input. When the `find` attribute is omitted, no text replacement occurs — only property and parameter substitution.
 
 ```xml
 <ReplacerPipe name="replace" getInputFromFixedValue="Property value ${my.property} and parameter value ?{my.param}">
@@ -96,7 +96,7 @@ Output: `Property value My property value and parameter value My parameter value
 
 ## EchoPipe Property Substitution
 
-`EchoPipe` substitutes **properties only** (`${...}`). It does not substitute parameters (`?{...}`).
+[`EchoPipe`](https://reference.frankframework.org/#/Components/Pipes/EchoPipe) substitutes **properties only** (`${...}`). It does not substitute parameters (`?{...}`).
 
 ## Complete Example
 

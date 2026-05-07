@@ -18,7 +18,7 @@ sidebar_position: 1
 
 **Problem:** An XSLT transformation parameter of type XML is interpreted as a string.
 
-**Fix:** Set `type="domdoc"` on the `<Param>` element:
+**Fix:** Set `type="domdoc"` on the `<Param>` element. See the [XsltPipe reference](https://reference.frankframework.org/#/Components/Pipes/XsltPipe) for all available attributes:
 
 ```xml
 <XsltPipe
@@ -49,7 +49,7 @@ sidebar_position: 1
 
 **Cause:** Input message is not valid XML.
 
-`XmlSwitchPipe` requires valid XML input and applies an XSLT stylesheet to determine the forward. With attribute `sessionKey`, the pipe uses the session key value directly as the forward without XSLT transformation.
+[`XmlSwitchPipe`](https://reference.frankframework.org/#/Components/Pipes/XmlSwitchPipe) requires valid XML input and applies an XSLT stylesheet to determine the forward. With attribute `sessionKey`, the pipe uses the session key value directly as the forward without XSLT transformation.
 
 ## Logging with LogSender
 
@@ -57,7 +57,7 @@ Add logging with `<LogSender>`. Set `logCategory` to control the category name (
 
 ## Filling Adapter Response from Session Key
 
-Use `EchoPipe` with `getInputFromSessionKey` to output a session key value as the adapter response.
+Use [`EchoPipe`](https://reference.frankframework.org/#/Components/Pipes/EchoPipe) with `getInputFromSessionKey` to output a session key value as the adapter response.
 
 ## Adapters Stopped by Default
 
@@ -98,5 +98,5 @@ Changes the file/property lookup order. For each file or property, the framework
 
 ## Iterating Over CSV Files
 
-Use `CsvParserPipe` (available since version 7.6). For older versions, use `BatchFileTransformerPipe`.
+Use [`CsvParserPipe`](https://reference.frankframework.org/#/Components/Pipes/CsvParserPipe) (available since version 7.6). For older versions, use [`BatchFileTransformerPipe`](https://reference.frankframework.org/#/Components/Pipes/BatchFileTransformerPipe).
 

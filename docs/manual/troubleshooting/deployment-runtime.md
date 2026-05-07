@@ -23,7 +23,7 @@ sidebar_position: 5
 
 **Problem:** HTTP 401 from external system despite configured credentials.
 
-**Fix:** Check Application Server startup logs (e.g., `${catalina.home}/logs`) for credential factory initialization errors. Example:
+**Fix:** Check Application Server startup logs (e.g., `${catalina.home}/logs`) for credential factory initialization errors. See the [FF! Reference for credential providers](https://reference.frankframework.org/#/credential-providers) for configuration details. Example:
 
 ```
 WARNING [main] org.frankframework.credentialprovider.CredentialFactory.tryFactory Cannot instantiate CredentialFactory [org.frankframework.credentialprovider.FileSystemCredentialFactory]

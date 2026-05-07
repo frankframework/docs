@@ -40,7 +40,7 @@ This limitation applies equally to XPath expressions, which use XSLT processing 
 
 ## ForEachChildElementPipe Streaming
 
-`ForEachChildElementPipe` defaults to Xalan (`xsltVersion=1`) rather than Saxon. This exception exists because `ForEachChildElementPipe` is designed to iterate over large messages and requires streaming support.
+[`ForEachChildElementPipe`](https://reference.frankframework.org/#/Components/Pipes/ForEachChildElementPipe) defaults to Xalan (`xsltVersion=1`) rather than Saxon. This exception exists because `ForEachChildElementPipe` is designed to iterate over large messages and requires streaming support.
 
 Most other pipes and senders default to Saxon (XSLT 2.0+).
 

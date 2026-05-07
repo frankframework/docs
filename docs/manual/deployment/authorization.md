@@ -32,6 +32,8 @@ Authentication is configured via properties prefixed with:
 - `application.security.console.authentication.` — for the Frank!Console and Ladybug.
 - `application.security.http.authenticators.<name>.` — for HTTP interfaces.
 
+For a complete and up-to-date list of all available servlet authenticators and their configuration options, see the [FF! Reference for servlet authenticators](https://reference.frankframework.org/#/servlet-authenticators).
+
 | Type | Description | Properties |
 |---|---|---|
 | `NONE` | No authorization required | — |
@@ -134,7 +136,7 @@ Console and Ladybug authentication properties use the prefix `application.securi
 
 ## Credentials Management
 
-Credentials keep secrets (usernames, passwords) out of Frank configurations and log files.
+Credentials keep secrets (usernames, passwords) out of Frank configurations and log files. For a complete list of all available credential providers and their configuration options, see the [FF! Reference for credential providers](https://reference.frankframework.org/#/credential-providers).
 
 ### Credential Factories
 

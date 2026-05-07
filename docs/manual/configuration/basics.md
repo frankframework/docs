@@ -75,11 +75,11 @@ Each exit has a `name`, a `state` (SUCCESS or ERROR), and an HTTP response `code
 
 ## Pipes
 
-Pipes are the processing units inside a pipeline. Each pipe has a `name` attribute and one or more `<Forward>` elements controlling flow.
+Pipes are the processing units inside a pipeline. Each pipe has a `name` attribute and one or more `<Forward>` elements controlling flow. For a complete and up-to-date list of all available pipes and their attributes, see the [FF! Reference](https://reference.frankframework.org/#/Components/Pipes).
 
 ### EchoPipe
 
-Returns its input unchanged, or a fixed value if `getInputFromFixedValue` is set.
+Returns its input unchanged, or a fixed value if `getInputFromFixedValue` is set. See the [EchoPipe reference](https://reference.frankframework.org/#/Components/Pipes/EchoPipe) for all available attributes.
 
 ```xml
 <EchoPipe
@@ -91,7 +91,7 @@ Returns its input unchanged, or a fixed value if `getInputFromFixedValue` is set
 
 ### XmlValidatorPipe
 
-Validates the incoming XML message against an XSD schema.
+Validates the incoming XML message against an XSD schema. See the [XmlValidatorPipe reference](https://reference.frankframework.org/#/Components/Pipes/XmlValidatorPipe) for all available attributes.
 
 ```xml
 <XmlValidatorPipe
@@ -109,7 +109,7 @@ Validates the incoming XML message against an XSD schema.
 
 ### SenderPipe
 
-Wraps a sender to communicate with external systems (databases, services, etc.).
+Wraps a sender to communicate with external systems (databases, services, etc.). See the [SenderPipe reference](https://reference.frankframework.org/#/Components/Pipes/SenderPipe) for all available attributes.
 
 ```xml
 <SenderPipe name="insertBooking">
@@ -128,7 +128,7 @@ Wraps a sender to communicate with external systems (databases, services, etc.).
 
 ### XsltPipe
 
-Applies an XSLT stylesheet to transform XML.
+Applies an XSLT stylesheet to transform XML. See the [XsltPipe reference](https://reference.frankframework.org/#/Components/Pipes/XsltPipe) for all available attributes.
 
 ```xml
 <XsltPipe
@@ -144,7 +144,7 @@ Applies an XSLT stylesheet to transform XML.
 
 ### ForEachChildElementPipe
 
-Iterates over XML elements matching an XPath expression, applying a sender to each.
+Iterates over XML elements matching an XPath expression, applying a sender to each. See the [ForEachChildElementPipe reference](https://reference.frankframework.org/#/Components/Pipes/ForEachChildElementPipe) for all available attributes.
 
 ```xml
 <ForEachChildElementPipe
