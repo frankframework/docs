@@ -53,7 +53,7 @@ The sender receives a message when the monitor is raised. This can trigger anoth
 
 Monitors defined in the UI must be exported and added to `Configuration.xml` to persist across restarts. Use the "XML" button in the UI to export.
 
-Full configuration example:
+Full configuration example (see the [FF! Reference](https://reference.frankframework.org/#/components) for pipe details):
 
 ```xml
 <Configuration

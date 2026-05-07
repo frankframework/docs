@@ -6,7 +6,7 @@ Custom Java code can extend the Frank!Framework when standard building blocks ar
 
 ## Extending FixedForwardPipe
 
-Derive custom pipes from `org.frankframework.pipes.FixedForwardPipe` and implement:
+Derive custom pipes from [`org.frankframework.pipes.FixedForwardPipe`](https://reference.frankframework.org/#/Components/Pipes/FixedForwardPipe) and implement:
 
 ```java
 public PipeRunResult doPipe(Message message, PipeLineSession session) throws PipeRunException
