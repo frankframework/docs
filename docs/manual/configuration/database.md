@@ -149,6 +149,12 @@ Always prefer configuring a DataSource directly.
 
 ### DataSource Classes
 
+:::info
+
+These classes are only examples and may differ depending on driver vendor and version.
+
+:::
+
 | Brand | Non-XA DataSource | XA DataSource |
 |-------|-------------------|---------------|
 | PostgreSQL | `org.postgresql.ds.PGSimpleDataSource` | `org.postgresql.xa.PGXADataSource` |
