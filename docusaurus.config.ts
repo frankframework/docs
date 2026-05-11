@@ -115,6 +115,10 @@ const config: Config = {
               label: 'Reference',
               href: 'https://reference.frankframework.org/',
             },
+            {
+              label: 'Javadoc',
+              href: 'https://javadoc.frankframework.org/',
+            },
           ],
         },
         {
