@@ -41,14 +41,8 @@ Use the Frank!Framework configuration parent POM to handle packaging automatical
 <parent>
     <groupId>org.frankframework</groupId>
     <artifactId>configuration-parent</artifactId>
-    <version>9.3.0-20250927.042333</version>
+    <version>10.1.0</version>
 </parent>
-```
-
-The parent POM is available from:
-
-```
-https://nexus.frankframework.org/repository/public
 ```
 
 Do not configure `maven-jar-plugin` manually when using the parent POM. The parent POM handles manifest generation, build info, and archive layout.
