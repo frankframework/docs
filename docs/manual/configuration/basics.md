@@ -47,7 +47,7 @@ Listeners define how an adapter receives input. They are placed inside a `<Recei
   <ApiListener
       name="inputListener"
       uriPattern="booking"
-      allowAllParams="false"
+      allowedParameters="comma,separated,listOfParams"
       method="POST"/>
 </Receiver>
 ```
@@ -55,8 +55,8 @@ Listeners define how an adapter receives input. They are placed inside a `<Recei
 Key attributes:
 - `uriPattern` — URL path segment (accessible at `/api/{uriPattern}`)
 - `method` — HTTP method (GET, POST, PUT, DELETE)
-- `allowAllParams` — whether to accept all query parameters
-
+- `allowedParameters` — A comma separated list with query parameters that may be used
+- `allowAllParams` — Disable the use of query parameters completely
 ## Pipeline and Exits
 
 A pipeline contains an `<Exits>` block and one or more pipes. The `firstPipe` attribute specifies the entry point. Without `firstPipe`, pipes execute sequentially.
@@ -75,7 +75,7 @@ Each exit has a `name`, a `state` (SUCCESS or ERROR), and an HTTP response `code
 
 ## Pipes
 
-Pipes are the processing units inside a pipeline. Each pipe has a `name` attribute and one or more `<Forward>` elements controlling flow. For a complete and up-to-date list of all available pipes and their attributes, see the [FF! Reference](https://reference.frankframework.org/#/components).
+Pipes are the processing units inside a pipeline and have control over the processing flow. As such each pipe must have an unique name using the `name` attribute and one or more `<Forward>` elements. For a complete and up-to-date list of all available pipes, possible sub-elements and their attributes, see the [FF! Reference](https://reference.frankframework.org/#/components).
 
 ### EchoPipe
 
@@ -109,7 +109,7 @@ Validates the incoming XML message against an XSD schema. See the [XmlValidatorP
 
 ### SenderPipe
 
-Wraps a sender to communicate with external systems (databases, services, etc.). See the [SenderPipe reference](https://reference.frankframework.org/#/Components/Pipes/SenderPipe) for all available attributes.
+Wraps a sender to communicate with external systems (databases, services, etc.). Unlike a `Pipe` senders do not control the flow of execution and may not be placed directly inside a `Pipeline` but must be wrapped by either a `SenderPipe` any type of `IteratingPipe`. See the [SenderPipe reference](https://reference.frankframework.org/#/Components/Pipes/SenderPipe) for all available attributes.
 
 ```xml
 <SenderPipe name="insertBooking">
@@ -122,7 +122,7 @@ Wraps a sender to communicate with external systems (databases, services, etc.).
     <Param name="price" xpathExpression="/booking/price"/>
     <Param name="fee" xpathExpression="/booking/fee"/>
   </FixedQuerySender>
-  <Forward name="success" path="getDestinations"/>
+  <Forward name="success" path="next-pipe-to-execute"/>
 </SenderPipe>
 ```
 
@@ -202,19 +202,17 @@ Executes SQL queries against a JDBC datasource.
 ```
 
 - `query` — SQL statement with `?` positional parameters
-- `datasourceName` — JNDI datasource name; `${instance.name.lc}` resolves to the lowercase instance name
+- `datasourceName` — DataSource name; defaults to `${instance.name.lc}` which resolves to the lowercase instance name
 - `<Param>` — binds values via XPath expressions; `/element` selects elements, `/@attr` selects attributes
 
 #### Named Parameters
 
-An alternative syntax uses named parameters with `useNamedParams="true"`:
+An alternative syntax uses named parameters:
 
 ```xml
 <FixedQuerySender
     name="insertBookingSender"
-    query="INSERT INTO booking VALUES(?{id}, ?{travelerId}, ?{price}, ?{fee})"
-    useNamedParams="true"
-    datasourceName="jdbc/${instance.name.lc}">
+    query="INSERT INTO booking VALUES(?{id}, ?{travelerId}, ?{price}, ?{fee})">
   <Param name="id" xpathExpression="/booking/@id"/>
   <Param name="travelerId" xpathExpression="/booking/travelerId"/>
   <Param name="price" xpathExpression="/booking/price"/>
@@ -222,9 +220,13 @@ An alternative syntax uses named parameters with `useNamedParams="true"`:
 </FixedQuerySender>
 ```
 
+- The query-parameters in the SQL query may reference a specific parameter using `?{name}`
+- You do not need to specify the `datasourceName` attribute if you wish to use the default.
+
 ## Database Initialization with Liquibase
 
 Frank!Framework uses Liquibase for database schema management. Enable it by setting `jdbc.migrator.active=true`.
+Each configuration may use their own changelog file. It is possible to change the name of the file and also to change the datasource it needs to apply the changelog to.
 
 ### DatabaseChangelog.xml
 
@@ -259,8 +261,8 @@ Place this file in the configuration directory. It defines schema changes as ord
 
 Important rules:
 - Never modify existing changesets after they have been applied. Always add new changesets.
-- The default datasource when using Frank!Runner is `jdbc/${instance.name.lc}` (e.g., `jdbc/frank2manual`).
-- Use `DROP ALL OBJECTS` via JDBC Execute Query to reset an H2 database during development.
+- The default datasource when using the Frank!Framework is `jdbc/${instance.name.lc}` (e.g., `jdbc/frank2manual`).
+- Use `DROP ALL OBJECTS` via JDBC Execute Query to reset an H2 database during development, this however does not reapply the migration changelog!
 
 ## XML Validation with XSD
 
@@ -319,8 +321,7 @@ Use `<XsltPipe>` with an XSLT stylesheet to transform XML messages:
 ```
 
 ## Transactions
-
-Add `transactionAttribute` to the `<Pipeline>` element to wrap all operations in a database transaction.
+Transactions are configured in a `<Receiver>` or in a `<Pipeline>`. You can control the use of transactions via the `transactionAttribute` on either of the elements to wrap all operations in a database transaction. If configured on the `Receiver` and not the `Pipeline`, the `Pipeline` will inherit the given transaction controlled by the `Receiver`.
 
 ```xml
 <Pipeline firstPipe="checkInput" transactionAttribute="RequiresNew">
@@ -328,11 +329,15 @@ Add `transactionAttribute` to the `<Pipeline>` element to wrap all operations in
 
 | Value | Behavior |
 |-------|----------|
-| `RequiresNew` | Starts a new transaction for this pipeline |
-| `Required` | Joins an existing transaction or creates a new one |
-| `Mandatory` | Requires an existing transaction; fails if none exists |
+| `Required` | Ensures there is a transaction; inherits or create a new one if none exists. |
+| `Supports` | Support a current transaction; execute non-transactionally if none exists. |
+| `Mandatory` | Requires a transaction is present; throws an exception if no current transaction exists. |
+| `RequiresNew` | Always create a new transaction, suspending the current transaction if one exists. |
+| `NotSupported` | Do not support a transaction; remove it when present and always execute non-transactional. |
+| `Never` | Do not support a transaction; throw an exception if a current transaction exists. |
 
-With transactions enabled, all database operations within the pipeline either succeed or roll back together (ACID semantics).
+- With transactions enabled, all database operations within the pipeline either succeed or roll back together (ACID semantics).
+- It is possible to have different transactions for data transport and data processing.
 
 ## File Layout
 
@@ -344,8 +349,8 @@ configurations/
     Configuration.xml
     DatabaseChangelog.xml
     StageSpecifics_LOC.properties
-    booking.xsd
-    booking2destinations.xsl
+    xml/xsd/booking.xsd
+    xml/xsl/booking2destinations.xsl
     webcontent/
       index.html
 ```
