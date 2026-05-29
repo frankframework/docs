@@ -41,7 +41,11 @@ develop:
       target: /opt/frank/resources
 ```
 
-> The image runs Tomcat as `tomcat:tomcat` (`UID=2000`, `GID=2000`). Ensure mounted or copied files are owned appropriately.
+:::info
+
+The image runs Tomcat as `tomcat:tomcat` (`UID=2000`, `GID=2000`). Ensure mounted or copied files are owned appropriately.
+
+:::
 
 ## Files
 

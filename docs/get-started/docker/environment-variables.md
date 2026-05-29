@@ -4,6 +4,12 @@ title: Environment Variables
 description: Configure Frank!Framework properties using environment variables in Docker Compose.
 ---
 
+:::warning
+
+Do not use environment variables for secrets. See [Secrets](https://github.com/frankframework/frankframework/blob/master/DOCKER.md#secrets).
+
+:::
+
 Environment variables can be used to set properties. They have the highest precedence and override application properties set in `.properties` files from Tomcat, resources, and configurations.
 
 Set variables in `compose.yaml` under `environment`:
@@ -18,5 +24,8 @@ services:
       configurations.directory.autoLoad: "false"
 ```
 
-> Do not use environment variables for secrets. See [Secrets](https://github.com/frankframework/frankframework/blob/master/DOCKER.md#secrets).
+:::info
 
+For a list of available properties, see the [FF! Reference](https://reference.frankframework.org/#/properties).
+
+:::
