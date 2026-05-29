@@ -5,175 +5,196 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'FF! Docs',
-  tagline: 'The official documentation for the Frank!Framework',
-  favicon: 'favicons/favicon.ico',
+    title: 'FF! Docs',
+    tagline: 'The official documentation for the Frank!Framework',
+    favicon: 'favicons/favicon.ico',
 
-  // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
-  future: {
-    v4: true, // Improve compatibility with the upcoming Docusaurus v4
-  },
-
-  // Set the production url of your site here
-  url: 'https://docs.frankframework.org',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
-
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'frankframework', // Usually your GitHub org/user name.
-  projectName: 'frankframework', // Usually your repo name.
-
-  onBrokenLinks: 'throw',
-
-  markdown: {
-    hooks: {
-      onBrokenMarkdownLinks: 'warn',
+    // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
+    future: {
+        v4: true, // Improve compatibility with the upcoming Docusaurus v4
     },
-  },
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
-  i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
-  },
+    // Set the production url of your site here
+    url: 'https://docs.frankframework.org',
+    // Set the /<baseUrl>/ pathname under which your site is served
+    // For GitHub pages deployment, it is often '/<projectName>/'
+    baseUrl: '/',
 
-  presets: [
-    [
-      'classic',
-      {
-        docs: {
-          sidebarPath: './sidebars.ts',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/frankframework/docs/edit/master/',
+    // GitHub pages deployment config.
+    // If you aren't using GitHub pages, you don't need these.
+    organizationName: 'frankframework', // Usually your GitHub org/user name.
+    projectName: 'frankframework', // Usually your repo name.
+
+    onBrokenLinks: 'throw',
+
+    markdown: {
+        hooks: {
+            onBrokenMarkdownLinks: 'warn',
         },
-        theme: {
-          customCss: './src/css/custom.css',
-        },
-      } satisfies Preset.Options,
+    },
+
+    // Even if you don't use internationalization, you can use this field to set
+    // useful metadata like html lang. For example, if your site is Chinese, you
+    // may want to replace "en" with "zh-Hans".
+    i18n: {
+        defaultLocale: 'en',
+        locales: ['en'],
+    },
+
+    presets: [
+        [
+            'classic',
+            {
+                docs: {
+                    sidebarPath: './sidebars.ts',
+                    // Please change this to your repo.
+                    // Remove this to remove the "edit this page" links.
+                    editUrl:
+                        'https://github.com/frankframework/docs/edit/master/',
+                },
+                theme: {
+                    customCss: './src/css/custom.css',
+                },
+            } satisfies Preset.Options,
+        ],
     ],
-  ],
 
-  themeConfig: {
-    // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
-    colorMode: {
-      respectPrefersColorScheme: true,
-    },
-    navbar: {
-      logo: {
-        alt: 'FF!',
-        src: 'img/ff!-icon-yellow.svg',
-      },
-      title: 'docs',
-      hideOnScroll: true,
-      items: [
-        {
-          type: 'docSidebar',
-          sidebarId: 'getStartedSidebar',
-          position: 'left',
-          label: 'Get Started',
+    themeConfig: {
+        // Replace with your project's social card
+        image: 'img/docusaurus-social-card.jpg',
+        colorMode: {
+            respectPrefersColorScheme: true,
         },
-        {
-          type: 'docSidebar',
-          sidebarId: 'manualSidebar',
-          position: 'left',
-          label: 'Manual',
+        navbar: {
+            logo: {
+                alt: 'FF!',
+                src: 'img/ff!-icon-yellow.svg',
+            },
+            title: 'docs',
+            hideOnScroll: true,
+            items: [
+                {
+                    type: 'docSidebar',
+                    sidebarId: 'getStartedSidebar',
+                    position: 'left',
+                    label: 'Get Started',
+                },
+                {
+                    type: 'docSidebar',
+                    sidebarId: 'manualSidebar',
+                    position: 'left',
+                    label: 'Manual',
+                },
+                {href: 'https://reference.frankframework.org/', label: 'Reference', position: 'left'},
+                {
+                    type: 'dropdown',
+                    label: 'Other resources',
+                    position: 'left',
+                    items: [
+                        {href: 'https://insights.frankframework.org/', label: 'Insights'},
+                        {label: '[Upcomming] Migration Guides', href: '#'},
+                        {href: 'https://frankacademy.nl/', label: 'Frank!Academy'},
+                    ],
+                },
+                {
+                    href: 'https://github.com/frankframework',
+                    label: 'GitHub',
+                    position: 'right',
+                },
+            ],
         },
-        {href: 'https://reference.frankframework.org/', label: 'Reference', position: 'left'},
-        {href: 'https://frankacademy.nl/', label: 'Frank!Academy', position: 'left'},
-        {
-          href: 'https://github.com/frankframework',
-          label: 'GitHub',
-          position: 'right',
+        footer: {
+            links: [
+                {
+                    title: 'Documentation',
+                    items: [
+                        {
+                            label: 'Get Started',
+                            to: '/docs/get-started',
+                        },
+                        {
+                            label: 'Manual',
+                            to: '/docs/manual',
+                        },
+                        {
+                            label: 'Legacy Frank!Manual',
+                            href: 'https://frank-manual.readthedocs.io/',
+                        },
+                        {
+                            label: 'Reference',
+                            href: 'https://reference.frankframework.org/',
+                        },
+                        {
+                            label: 'Javadoc',
+                            href: 'https://javadoc.frankframework.org/',
+                        },
+                    ],
+                },
+                {
+                    title: 'Other resources',
+                    items: [
+                        {
+                            label: 'Insights',
+                            href: 'https://insights.frankframework.org/',
+                        },
+                        {
+                            label: 'Frank!Academy',
+                            href: 'https://frankacademy.nl/',
+                        },
+                        {
+                            label: '[Upcomming] Migration Guides',
+                            href: '#',
+                        },
+                    ],
+                },
+                {
+                    title: 'More',
+                    items: [
+                        {
+                            label: 'FF! Website',
+                            href: 'https://frankframework.org',
+                        },
+                        {
+                            label: 'GitHub',
+                            href: 'https://github.com/frankframework',
+                        },
+                        {
+                            label: 'GitHub Discussions',
+                            href: 'https://github.com/frankframework/frankframework/discussions',
+                        },
+                        {
+                            label: 'Nexus',
+                            href: 'https://nexus.frankframework.org/',
+                        },
+                        {
+                            label: 'Docker Hub',
+                            href: 'https://hub.docker.com/r/frankframework/frankframework',
+                        },
+                    ],
+                },
+            ],
+            copyright: `© ${new Date().getFullYear()} Frank!Framework &bull; <a target="_blank" href="https://github.com/frankframework/docs">Docs Source</a>`,
         },
-      ],
-    },
-    footer: {
-      links: [
-        {
-          title: 'Documentation',
-          items: [
-            {
-              label: 'Get Started',
-              to: '/docs/get-started',
-            },
-            {
-              label: 'Manual',
-              to: '/docs/manual',
-            },
-            {
-              label: 'Old Frank!Manual',
-              href: 'https://frank-manual.readthedocs.io/',
-            },
-            {
-              label: 'Reference',
-              href: 'https://reference.frankframework.org/',
-            },
-            {
-              label: 'Javadoc',
-              href: 'https://javadoc.frankframework.org/',
-            },
-          ],
+        algolia: {
+            appId: 'H18WHKAMRM',
+            // Public API key: it is safe to commit it
+            apiKey: '22bd7a1f4a7ec802a49375757a7af7c1',
+            indexName: 'FF! Docs',
+            // Context filters will filter out the external sites. So I disabled it. We can enable it in the future but will have to make a recordExtractor.
+            contextualSearch: false,
+            externalUrlRegex: 'frank-manual\\.readthedocs\\.io',
         },
-        {
-          title: 'Community',
-          items: [
-            {
-              label: 'GitHub Discussions',
-              href: 'https://github.com/frankframework/frankframework/discussions',
-            },
-          ],
+        prism: {
+            theme: prismThemes.github,
+            darkTheme: prismThemes.dracula,
         },
-        {
-          title: 'More',
-          items: [
+        metadata: [
             {
-              label: 'Frank!Framework',
-              href: 'https://frankframework.org',
+                name: 'algolia-site-verification',
+                content: '2D87C4BF471503E1',
             },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/frankframework',
-            },
-            {
-              label: 'Docker Hub',
-              href: 'https://hub.docker.com/r/frankframework/frankframework',
-            },
-            {
-              label: 'Frank!Academy',
-              href: 'https://frankacademy.nl/',
-            },
-          ],
-        },
-      ],
-      copyright: `© ${new Date().getFullYear()} Frank!Framework`,
-    },
-    algolia: {
-      appId: 'H18WHKAMRM',
-      // Public API key: it is safe to commit it
-      apiKey: '22bd7a1f4a7ec802a49375757a7af7c1',
-      indexName: 'FF! Docs',
-      // Context filters will filter out the external sites. So I disabled it. We can enable it in the future but will have to make a recordExtractor.
-      contextualSearch: false,
-      externalUrlRegex: 'frank-manual\\.readthedocs\\.io',
-    },
-    prism: {
-      theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
-    },
-    metadata: [
-      {
-        name: 'algolia-site-verification',
-        content: '2D87C4BF471503E1',
-      },
-    ],
-  } satisfies Preset.ThemeConfig,
+        ],
+    } satisfies Preset.ThemeConfig,
 };
 
 export default config;
