@@ -12,7 +12,7 @@ export default function Resources(): ReactNode {
           <DocCard href="https://reference.frankframework.org/" title="Reference" icon="🔣" description="Technical documentation of FF! components" />
           <DocCard href="https://insights.frankframework.org/" title="Insights" icon="🔍" description="Insights about implemented features, the roadmap and CVE's" />
           <DocCard href="https://frankacademy.nl/" title="Frank!Academy" icon="🎓" description="Free training and certification by WeAreFrank!" />
-          <DocCard href="#" title="[Upcomming] Migration Guides" icon="✨" description="Notable changes and migrations guides"/>
+          <DocCard href="#" title="[Upcoming] Migration Guides" icon="✨" description="Notable changes and migrations guides"/>
         </div>
       </div>
     </section>
