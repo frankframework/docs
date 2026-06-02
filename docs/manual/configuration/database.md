@@ -193,14 +193,14 @@ Port numbers shown are defaults and may be omitted. A non-default port requires 
 
 ### Driver Downloads
 
-| Brand | Download |
-|-------|----------|
-| PostgreSQL | [Maven Central](https://central.sonatype.com/artifact/org.postgresql/postgresql/versions) |
-| MariaDB | [Maven Repository](https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client) |
-| MySQL | [Maven Repository](https://mvnrepository.com/artifact/com.mysql/mysql-connector-j) |
+| Brand | Download                                                                                                                     |
+|-------|------------------------------------------------------------------------------------------------------------------------------|
+| PostgreSQL | [Maven Repository](https://mvnrepository.com/artifact/org.postgresql/postgresql)                                             |
+| MariaDB | [Maven Repository](https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client)                                  |
+| MySQL | [Maven Repository](https://mvnrepository.com/artifact/com.mysql/mysql-connector-j)                                           |
 | MS SQL | [Maven Repository](https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc) (JRE 11 versions work with JRE 21) |
-| Oracle | [Maven Repository](https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc11) |
-| H2 | [Maven Repository](https://mvnrepository.com/artifact/com.h2database/h2) |
+| Oracle | [Maven Repository](https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc11)                                      |
+| H2 | [Maven Repository](https://mvnrepository.com/artifact/com.h2database/h2)                                                     |
 
 ## Vendor-Specific Notes
 
