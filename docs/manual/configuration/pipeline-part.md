@@ -41,8 +41,8 @@ When multiple pipes need to forward to the same exit or pipe (e.g., a shared err
     <Exit name="ServerError" state="ERROR" code="500"/>
   </Exits>
 
-  <Global-Forward name="exception" path="ServerError"/>
-  <Global-Forward name="failure" path="BadRequest"/>
+  <GlobalForward name="exception" path="ServerError"/>
+  <GlobalForward name="failure" path="BadRequest"/>
 
   <XmlValidatorPipe name="validate" root="order" schema="order.xsd">
     <Forward name="success" path="process"/>
@@ -86,8 +86,8 @@ A well-structured pipeline uses exits to define all possible outcomes and global
     <Exit name="ServerError" state="ERROR" code="500"/>
   </Exits>
 
-  <Global-Forward name="failure" path="BadRequest"/>
-  <Global-Forward name="exception" path="ServerError"/>
+  <GlobalForward name="failure" path="BadRequest"/>
+  <GlobalForward name="exception" path="ServerError"/>
 
   <XmlValidatorPipe name="validate" root="request" schema="request.xsd">
     <Forward name="success" path="transform"/>

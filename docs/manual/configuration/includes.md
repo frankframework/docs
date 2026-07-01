@@ -4,7 +4,7 @@ Frank!Framework configurations support including external XML fragments to promo
 
 ## XML Entity Includes
 
-The standard XML entity mechanism allows you to define reusable fragments. Declare an entity in the DOCTYPE and reference it in the configuration body:
+The standard XML entity mechanism allows you to define reusable fragments. Declare an entity in the DOCTYPE and reference it in the configuration body. File paths in entity declarations are resolved relative to the configuration directory (the directory containing the main `Configuration.xml` file):
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
