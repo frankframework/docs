@@ -1,109 +1,71 @@
-# Exits and Global Forwards
+# PipelinePart
 
-This page covers advanced pipeline flow control: defining exits, using global forwards to reduce repetition, and structuring pipelines for clarity.
+A `<PipelinePart>` is a reusable piece of a pipeline stored in its own file, much like an [include](./includes.md) file — but instead of whole adapters it contains a fragment of pipeline (a set of pipes). This lets you factor out a sequence of pipes that is shared between adapters or that you simply want to keep in a separate file for readability.
 
-## Pipeline Exits
+## Structure of a PipelinePart File
 
-Every pipeline must declare at least one `<Exit>`. Exits define the possible end states of a pipeline and map to HTTP response codes (for API-based adapters).
-
-```xml
-<Pipeline>
-  <Exits>
-    <Exit name="Exit" state="SUCCESS" code="200"/>
-    <Exit name="Created" state="SUCCESS" code="201"/>
-    <Exit name="BadRequest" state="ERROR" code="400"/>
-    <Exit name="NotFound" state="ERROR" code="404"/>
-    <Exit name="ServerError" state="ERROR" code="500"/>
-  </Exits>
-  <!-- pipes here -->
-</Pipeline>
-```
-
-### Exit Attributes
-
-| Attribute | Description |
-|-----------|-------------|
-| `name` | Unique identifier; referenced by forwards in pipes |
-| `state` | `SUCCESS` or `ERROR`; determines whether the result is treated as successful |
-| `code` | HTTP status code returned to the caller (for HTTP-based listeners) |
-
-A pipe routes to an exit by specifying the exit's `name` in a `<Forward>` element's `path` attribute.
-
-## Global Forwards
-
-When multiple pipes need to forward to the same exit or pipe (e.g., a shared error handler), declaring the same `<Forward>` on every pipe is repetitive. **Global forwards** solve this by defining forwards at the pipeline level that apply to all pipes.
+A PipelinePart file uses `<PipelinePart>` as its root element and contains one or more pipes:
 
 ```xml
-<Pipeline>
-  <Exits>
-    <Exit name="Exit" state="SUCCESS" code="200"/>
-    <Exit name="BadRequest" state="ERROR" code="400"/>
-    <Exit name="ServerError" state="ERROR" code="500"/>
-  </Exits>
-
-  <GlobalForward name="exception" path="ServerError"/>
-  <GlobalForward name="failure" path="BadRequest"/>
-
-  <XmlValidatorPipe name="validate" root="order" schema="order.xsd">
-    <Forward name="success" path="process"/>
-    <!-- "failure" forward is inherited from the global forward -->
-  </XmlValidatorPipe>
-
-  <SenderPipe name="process">
-    <FixedQuerySender query="INSERT INTO orders VALUES(?{id})" datasourceName="jdbc/${instance.name.lc}">
-      <Param name="id" xpathExpression="/order/@id"/>
-    </FixedQuerySender>
-    <Forward name="success" path="Exit"/>
-    <!-- "exception" forward is inherited from the global forward -->
-  </SenderPipe>
-</Pipeline>
+<!-- included-part.xml -->
+<PipelinePart
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://schemas.frankframework.org/FrankConfig.xsd">
+  <EchoPipe name="ping"/>
+  <EchoPipe name="pong"/>
+</PipelinePart>
 ```
 
-### How Global Forwards Work
+The `<PipelinePart>` element is only a container. When the file is included, the wrapper is stripped and the pipes it contains are inserted directly into the surrounding pipeline.
 
-- A global forward applies to **all pipes** in the pipeline.
-- If a pipe declares its own `<Forward>` with the same `name`, the pipe-level forward takes precedence (overrides the global).
-- Global forwards are typically used for `failure` and `exception` outcomes that should route to the same exit across all pipes.
+## Including a PipelinePart
 
-### Common Global Forward Names
-
-| Forward Name | Typical Use |
-|--------------|-------------|
-| `success` | Default success path (rarely used globally) |
-| `failure` | Validation or processing failures |
-| `exception` | Unexpected errors or exceptions |
-| `parserError` | XML parsing errors |
-
-## Combining Exits and Global Forwards
-
-A well-structured pipeline uses exits to define all possible outcomes and global forwards to establish default routing, with pipe-level forwards only where behavior differs from the default:
+Reference the file from within a `<Pipeline>` using the [`<Include>`](./includes.md) element and its `ref` attribute:
 
 ```xml
-<Pipeline firstPipe="validate">
-  <Exits>
-    <Exit name="Exit" state="SUCCESS" code="200"/>
-    <Exit name="BadRequest" state="ERROR" code="400"/>
-    <Exit name="ServerError" state="ERROR" code="500"/>
-  </Exits>
-
-  <GlobalForward name="failure" path="BadRequest"/>
-  <GlobalForward name="exception" path="ServerError"/>
-
-  <XmlValidatorPipe name="validate" root="request" schema="request.xsd">
-    <Forward name="success" path="transform"/>
-  </XmlValidatorPipe>
-
-  <XsltPipe name="transform" styleSheetName="transform.xsl">
-    <Forward name="success" path="store"/>
-  </XsltPipe>
-
-  <SenderPipe name="store">
-    <FixedQuerySender query="INSERT INTO data VALUES(?{value})">
-      <Param name="value" xpathExpression="/result/value"/>
-    </FixedQuerySender>
-    <Forward name="success" path="Exit"/>
-  </SenderPipe>
-</Pipeline>
+<Adapter name="Adapt1">
+  <Receiver>
+    <JavaListener name="List1"/>
+  </Receiver>
+  <Pipeline>
+    <FixedResultPipe name="fr1"/>
+    <Include ref="included-part.xml"/>
+    <EchoPipe name="e2"/>
+  </Pipeline>
+</Adapter>
 ```
 
-This pattern keeps configurations concise and ensures consistent error handling across all pipes.
+After parsing, the pipeline above behaves exactly as if the `ping` and `pong` pipes had been written inline between `fr1` and `e2`:
+
+```
+fr1  →  ping  →  pong  →  e2
+```
+
+Because the pipes are inlined, forwards and flow control work exactly as they would for pipes written directly in the pipeline.
+
+## When to Use a PipelinePart
+
+- **Reuse a sequence of pipes** across multiple adapters without copying and pasting them.
+- **Keep large pipelines readable** by extracting logically grouped pipes into their own file.
+- **Standardize common steps** such as logging, validation, or enrichment fragments.
+
+## PipelinePart vs. Sub-Adapters and Plugins
+
+A `<PipelinePart>` is a *compile-time* include: its pipes become part of the including pipeline and run in the same pipeline call. This differs from calling a sub-adapter with a [FrankSender](./frank-sender-listener.md), which invokes a separate pipeline (and optionally a separate transaction) at runtime.
+
+The Frank!Framework also supports **plugins**, which are called at runtime as their own sub-process using a `CompositePipe` (or a `CompositeSender` inside an iterating pipe). Like a sub-adapter call, a plugin runs as its own pipeline, and — because not all session variables are copied over — values are passed in explicitly through `<Param>` elements:
+
+```xml
+<CompositePipe name="callPlugin" plugin="name-of-the-plugin">
+  <Param name="inject-me" value="im a value"/>
+  <Param name="inject-me-too" sessionKey="originalMessage"/>
+</CompositePipe>
+```
+
+| Mechanism | Called as | Best for |
+|-----------|-----------|----------|
+| `<PipelinePart>` via `<Include>` | Inlined into the pipeline (same pipeline call) | Reusing a piece of pipeline within your own configuration |
+| `<FrankSender>` | Separate adapter/pipeline at runtime | Calling another adapter as a subroutine |
+| `<CompositePipe>` / `<CompositeSender>` | Separate sub-process (plugin) at runtime | Calling a packaged Frank!Framework plugin |
+
+For a complete and up-to-date list of available components and their attributes, see the [FF! Reference](https://reference.frankframework.org/#/components).
