@@ -23,9 +23,9 @@ The `<PipelinePart>` element is only a container. When the file is included, the
 Reference the file from within a `<Pipeline>` using the [`<Include>`](./includes.md) element and its `ref` attribute:
 
 ```xml
-<Adapter name="Adapt1">
+<Adapter name="Adapter1">
   <Receiver>
-    <JavaListener name="List1"/>
+    <JavaListener name="my-JavaListener"/>
   </Receiver>
   <Pipeline>
     <FixedResultPipe name="fr1"/>
@@ -53,7 +53,7 @@ Because the pipes are inlined, forwards and flow control work exactly as they wo
 
 A `<PipelinePart>` is a *compile-time* include: its pipes become part of the including pipeline and run in the same pipeline call. This differs from calling a sub-adapter with a [FrankSender](./frank-sender-listener.md), which invokes a separate pipeline (and optionally a separate transaction) at runtime.
 
-The Frank!Framework also supports **plugins**, which are called at runtime as their own sub-process using a `CompositePipe` (or a `CompositeSender` inside an iterating pipe). Like a sub-adapter call, a plugin runs as its own pipeline, and — because not all session variables are copied over — values are passed in explicitly through `<Param>` elements:
+The Frank!Framework also supports **plugins**, which are called at runtime as their own sub-process using a `CompositePipe` (or a `CompositeSender` inside a sender or iterating pipe). Like a sub-adapter call, a plugin runs as its own pipeline, and — because not all session variables are copied over — values are passed in explicitly through `<Param>` elements:
 
 ```xml
 <CompositePipe name="callPlugin" plugin="name-of-the-plugin">
