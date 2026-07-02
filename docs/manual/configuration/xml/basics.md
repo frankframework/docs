@@ -1,4 +1,4 @@
-# Frank Configuration Basics
+# XML Configuration Basics
 
 A Frank!Framework application is defined by XML configuration files validated against `FrankConfig.xsd`. The root element is `<Configuration>`, which contains one or more `<Adapter>` elements.
 
