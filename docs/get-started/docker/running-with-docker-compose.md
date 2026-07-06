@@ -126,7 +126,7 @@ If `docker compose watch` is unavailable, mount `configurations/` as a volume in
 ```yaml
 services:
   frankframework:
-    ...
+    # ...
     volumes:
       - ./configurations/:/opt/frank/configurations
 ```

@@ -17,7 +17,7 @@ Set variables in `compose.yaml` under `environment`:
 ```yaml
 services:
   frankframework:
-    ...
+    # ...
     environment:
       instance.name: my-frank-app
       dtap.stage: LOC

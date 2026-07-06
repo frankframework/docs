@@ -20,7 +20,7 @@ You can add a Docker healthcheck in `compose.yaml`:
 ```yaml
 services:
   frankframework:
-    ...
+    # ...
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/iaf/api/server/health"]
       interval: 10s

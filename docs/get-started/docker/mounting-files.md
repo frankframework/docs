@@ -26,7 +26,7 @@ Example with volumes:
 ```yaml
 services:
   frankframework:
-    ...
+    # ...
     volumes:
       - ./resources/:/opt/frank/resources
 ```
@@ -46,6 +46,29 @@ develop:
 The image runs Tomcat as `tomcat:tomcat` (`UID=2000`, `GID=2000`). Ensure mounted or copied files are owned appropriately.
 
 :::
+
+## Readonly
+
+When running in readonly mode, the following directories need to be mounted as writable for the container to start:
+
+* `/usr/local/tomcat/logs`
+* `/usr/local/tomcat/conf/Catalina`
+* `/usr/local/tomcat/temp`
+* `/usr/local/tomcat/work/Catalina/localhost`
+
+In Docker compose that can be done by adding a `tmpfs` for each directory:
+
+```yaml
+services:
+  frankframework:
+    # ...
+    read_only: true
+    tmpfs:
+      - /usr/local/tomcat/logs
+      - /usr/local/tomcat/conf/Catalina
+      - /usr/local/tomcat/temp
+      - /usr/local/tomcat/work/Catalina/localhost
+```
 
 ## Files
 
