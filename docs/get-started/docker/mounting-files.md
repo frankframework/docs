@@ -52,8 +52,8 @@ The image runs Tomcat as `tomcat:tomcat` (`UID=2000`, `GID=2000`). Ensure mounte
 When running in readonly mode, the following directories need to be mounted as writable for the container to start:
 
 * `/usr/local/tomcat/logs`
-* `/usr/local/tomcat/conf/Catalina`
 * `/usr/local/tomcat/temp`
+* `/usr/local/tomcat/conf/Catalina/localhost`
 * `/usr/local/tomcat/work/Catalina/localhost`
 
 In Docker compose that can be done by adding a `tmpfs` for each directory:
@@ -65,8 +65,8 @@ services:
     read_only: true
     tmpfs:
       - /usr/local/tomcat/logs
-      - /usr/local/tomcat/conf/Catalina
       - /usr/local/tomcat/temp
+      - /usr/local/tomcat/conf/Catalina/localhost
       - /usr/local/tomcat/work/Catalina/localhost
 ```
 
