@@ -52,7 +52,8 @@ Key characteristics:
 
 - **Lowest overhead** — no receiver, listener, or message-log machinery is involved.
 - **Runs in the caller's transaction** by default. If the called adapter should run in its own transaction, set the `transactionAttribute` on the called adapter's `<Pipeline>` (or on the `<SenderPipe>` that contains the `FrankSender`).
-
+- If the listener is in a different configuration, prefix the target with the configuration name and a slash.
+- 
 Use scope `ADAPTER` for the common case: calling a sub-adapter as a subroutine when you do not need the extra error handling of a receiver.
 
 ## Scope LISTENER: Calling via a FrankListener
