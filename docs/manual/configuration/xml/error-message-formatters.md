@@ -32,7 +32,7 @@ An `errorMessageFormatter` is configured on a `<Receiver>`. It determines how er
 | `SoapErrorMessageFormatter` | Produces a SOAP Fault envelope for SOAP-based services. |
 | `FixedErrorMessageFormatter` | Returns a fixed, preconfigured error message regardless of the actual error. |
 
-For a complete and up-to-date list of all available formatters and their attributes, see the [FF! Reference]([https://reference.frankframework.org/#/components](https://reference.frankframework.org/#/search?search=ErrorMessageFormatter)).
+For a complete and up-to-date list of all available formatters and their attributes, see the [FF! Reference](https://reference.frankframework.org/#/search?search=ErrorMessageFormatter).
 
 ## XslErrorMessageFormatter Example
 
