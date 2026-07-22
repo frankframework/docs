@@ -13,6 +13,101 @@ my.text=My text is ${my.hello}
 
 Reference a property by surrounding its name with `${` and `}`. References are resolved at runtime by substituting the property's value. A property can reference another property defined later in the same file.
 
+Boolean properties support a simple negation-syntax with the `!` symbol, so `!false` evaluates to `true`. This is useful in nested property evaluations.
+
+### Advanced expression evaluation in properties
+Properties also support evaluation of simple JEXL expressions, surrounded by `${=` and `}`. JEXL is the Java Expression Language and the generic documentation can be found on [the project homepage](https://commons.apache.org/proper/commons-jexl/) and [reference documentation](https://commons.apache.org/proper/commons-jexl/reference/index.html), however to show its use in the Frank!Framework we will focus here on some examples of how it is integrated into property evaluation.
+
+Simple Java-like expressions can be used in property evaluation like the example below:
+
+```properties
+instance.name=MyFrank
+instance.name.lc=${=instance.name.toLowerCase()}
+```
+
+As you can see in this example, expressions can reference other properties in the configuration file. These referenced properties are treated as String objects and normal Java String operations can be used on them.
+
+However, sometimes you want to do numerical operations on properties that are actually numerical values. The easiest way to do that is by embedding the references to that property using the
+`${...}` syntax as in this example:
+```properties
+receiver.defaultMaxBackoffDelay=60
+transactionmanager.defaultTransactionTimeout=${= ${receiver.defaultMaxBackoffDelay} * 2 }
+```
+
+In this way the expression-parser sees a constant number when parsing the expression instead of a reference to a string.
+
+You can also use more complex operations in expressions:
+```properties
+receiver.defaultMaxBackoffDelay=60
+transactionmanager.defaultTransactionTimeout=${= Math.max(180, ${receiver.defaultMaxBackoffDelay} * 2) }
+```
+
+Here we use the standard Java `Math` function to make sure that our transaction timeout is always at least 180 seconds, but will be double the receiver backoff delay if that delay is set higher than 90.
+
+**WARNING**
+You can not use `${...}` inside expressions to reference String values! You should do this only for boolean and numerical values.
+So do not do something like this, for it will give an error:
+```properties
+instance.name.lc=${=${instance.name}.toLowerCase()}
+```
+
+A more complex example, constructing a URL from parts:
+```properties
+remote.host=example.com
+remote.port=
+remote.isSecure=true
+
+# Combine into full URL for the remote system
+remote.url=${= StringUtils.isEmpty(remote.host) ? "" : ( ( ${remote.isSecure} ? "https://" : "http://") + remote.host + (StringUtils.isEmpty(remote.port) ? "" : ":" + remote.port) + "/api") }
+```
+The property `remote.url` will now evaluate to `https://example.com/api`. If instead the same 3 properties for host, port and isSecure would be defined as:
+```properties
+remote.host=example.com
+remote.port=8080
+remote.isSecure=false
+```
+This will result in `remote.url` evaluating to `http://example.com:8080/api`.
+If `remote.host` would have been empty, then `remote.url` would have been empty as well.
+
+You could now give an Application Warning that will be visible on the Status page of the Frank!Framework Console if the URL is empty. One way to do that is directly in the properties file:
+```properties
+remote.configured=${= if (StringUtils.isEmpty(remote.host) { ApplicationWarnings.add(log, "The property 'remote.host' should be configured for the adapter to successfully start"); return false; } else { return true; } }
+```
+As soon as the property `remote.configured` is now checked this application warning will be added. See also the chapter below about property evaluation in XML Configuration files. (`log` is a constant that is required for adding the Application Warning, as result of the way the legacy Java code works).
+
+
+**NOTE**
+If your property expression has a syntax error in it, it will evaluate to an empty value. The syntax error is logged at level `ERROR` so check your logs when an expression does not do what you expect.
+The error could look something like this in your logfiles:
+
+```log
+2026-07-20T16:10:51.627866700Z main ERROR Cannot parse [ StringUtil.splitToStream(inp, " ").map(StringUtil::lcFirst).collect(Collectors.joining(", ")) ] as JEXL expression
+org.apache.commons.jexl3.JexlException$Parsing: org.frankframework.extentions.script.EmbeddedScriptEvaluation.resolve:162@1:50 parsing error in ':'
+    at org.apache.commons.jexl3.JexlEngine.createScript(JexlEngine.java:423)
+    at org.frankframework.extentions.script.EmbeddedScriptEvaluation.resolve(EmbeddedScriptEvaluation.java:162)
+```
+
+In this particular expression the error is that the Java method reference syntax is not supported: `map(StringUtil::lcFirst)` is invalid in JEXL and instead this should be written as `map(s -> StringUtil.lcFirst(s))`. As you can see, this expression also demonstrates some advanced usage of expressions to iterate over words in a property-variable using the Java Streams API, concatenating the result into a new 
+
+#### Available Classes
+Throughout these examples you will have seen various Java classes used: `StringUtils`, `Math`, and others. These are utility-classes, providing helpful static methods for checking or constructing properties. Static methods of the following classes from the Java JDK, the Frank!Framework and the Apache Commons library are available to be used within expressions: 
+
+- [String](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/String.html)
+- [Boolean](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/Boolean.html)
+- [Integer](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/Integer.html)
+- [Long](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/Long.html)
+- [Double](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/Double.html)
+- [Math](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/Math.html)
+- [Arrays](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/Arrays.html)
+- [Collections](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/Collections.html)
+- [Collectors](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/stream/Collectors.html)
+- [Strings](https://javadoc.io/doc/org.apache.commons/commons-lang3/latest/org/apache/commons/lang3/Strings.html)
+- [StringUtils](https://javadoc.io/doc/org.apache.commons/commons-lang3/latest/org/apache/commons/lang3/StringUtils.html)
+- [StringUtil](https://javadoc.frankframework.org/org/frankframework/util/StringUtil.html)
+- [Misc](https://javadoc.frankframework.org/org/frankframework/util/Misc.html)
+- [ApplicationWarnings](https://javadoc.frankframework.org/org/frankframework/configuration/ApplicationWarnings.html)
+
+### Property evaluation in XML configuration files
 In XML configuration files, property references use the same syntax:
 
 ```xml
@@ -27,6 +122,42 @@ From stage LOC, I say My text is Hello
 ```
 
 Properties can also be set as Java system properties via `-Dproperty="value"` on the command line. These override values defined in property files.
+
+The JEXL expressions are also evaluated in XML Configuration files. This can be used for instance for conditional warnings (see also the example above with constructing a URL from parts that will produce an empty URL if no hostname is set):
+
+```xml
+<Configuration
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="https://schemas.frankframework.org/FrankConfig.xsd"
+>
+	<Adapter name="MyAdapter" active="${= StringUtils.isNotEmpty(remote.url) }">
+		<ConfigWarning active="${= StringUtils.isEmpty(remote.url) }">Adapter 'MyAdapter' disabled as the URL for 'remoteSystem' has not been configured</ConfigWarning>
+		<Receiver>
+            ...
+		</Receiver>
+		<Pipeline>
+            ...
+		</Pipeline>
+	</Adapter>
+</Configuration>
+```
+
+Alternatively the property `remote.configured` can be used that we have defined in the example above. To evaluate that property, a simple reference to it is sufficient:
+```xml
+<Configuration
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="https://schemas.frankframework.org/FrankConfig.xsd"
+>
+	<Adapter name="MyAdapter" active="${remote.configured}">
+		<Receiver>
+            ...
+		</Receiver>
+		<Pipeline>
+            ...
+		</Pipeline>
+	</Adapter>
+</Configuration>
+```
 
 ## Deployment Environment Layers
 
