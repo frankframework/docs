@@ -1,12 +1,13 @@
 # Properties
 
-Properties are name/value pairs that configure Frank!Framework behavior and allow Frank configurations to adapt to different deployment environments. For a complete and up-to-date list of all available properties, see the [FF! Reference](https://reference.frankframework.org/#/properties).
+Properties are name/value pairs that configure Frank!Framework behaviour and allow Frank configurations to adapt to different deployment environments. For a complete and up-to-date list of all available properties, see the [FF! Reference](https://reference.frankframework.org/#/properties).
 
 ## Property Syntax and Referencing
 
 Properties are defined as `name=value` pairs. Property names are words separated by dots. Lines starting with `#` are comments.
 
 ```properties
+# This is a comment
 my.hello=Hello
 my.text=My text is ${my.hello}
 ```
@@ -16,7 +17,8 @@ Reference a property by surrounding its name with `${` and `}`. References are r
 Boolean properties support a simple negation-syntax with the `!` symbol, so `!false` evaluates to `true`. This is useful in nested property evaluations.
 
 ### Advanced expression evaluation in properties
-Properties also support evaluation of simple JEXL expressions, surrounded by `${=` and `}`. JEXL is the Java Expression Language and the generic documentation can be found on [the project homepage](https://commons.apache.org/proper/commons-jexl/) and [reference documentation](https://commons.apache.org/proper/commons-jexl/reference/index.html), however to show its use in the Frank!Framework we will focus here on some examples of how it is integrated into property evaluation.
+Properties also support evaluation of simple JEXL expressions, surrounded by `${=` and `}`. JEXL is a Java Expression Language library from the Apache Commons project. Documentation can be found on [the project homepage](https://commons.apache.org/proper/commons-jexl/) and in the [reference documentation](https://commons.apache.org/proper/commons-jexl/reference/index.html). 
+However to show its use in the Frank!Framework we will focus here on some examples of how it is integrated into property evaluation.
 
 Simple Java-like expressions can be used in property evaluation like the example below:
 
@@ -43,9 +45,11 @@ transactionmanager.defaultTransactionTimeout=${= Math.max(180, ${receiver.defaul
 ```
 
 Here we use the standard Java `Math` function to make sure that our transaction timeout is always at least 180 seconds, but will be double the receiver backoff delay if that delay is set higher than 90.
+Please note that the available classes and functions are limited to the list defined below in [Available Classes](#available-classes).
 
 **WARNING**
-You can not use `${...}` inside expressions to reference String values! You should do this only for boolean and numerical values.
+
+You can not use `${...}` inside expressions to reference String values! You should do this only for boolean and numerical values. String values are already treated as String objects and can be used directly in expressions.
 So do not do something like this, for it will give an error:
 ```properties
 instance.name.lc=${=${instance.name}.toLowerCase()}
@@ -77,6 +81,7 @@ As soon as the property `remote.configured` is now checked this application warn
 
 
 **NOTE**
+
 If your property expression has a syntax error in it, it will evaluate to an empty value. The syntax error is logged at level `ERROR` so check your logs when an expression does not do what you expect.
 The error could look something like this in your logfiles:
 
