@@ -18,7 +18,7 @@ Boolean properties support a simple negation-syntax with the `!` symbol, so `!fa
 
 ### Advanced expression evaluation in properties
 Properties also support evaluation of simple JEXL expressions, surrounded by `${=` and `}`. JEXL is a Java Expression Language library from the Apache Commons project. Documentation can be found on [the project homepage](https://commons.apache.org/proper/commons-jexl/) and in the [reference documentation](https://commons.apache.org/proper/commons-jexl/reference/index.html). 
-However to show its use in the Frank!Framework we will focus here on some examples of how it is integrated into property evaluation.
+However, to show its use in the Frank!Framework we will focus here on some examples of how it is integrated into property evaluation.
 
 Simple Java-like expressions can be used in property evaluation like the example below:
 
