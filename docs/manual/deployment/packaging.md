@@ -11,7 +11,7 @@ Frank configurations can be packaged as `.zip` or `.jar` files for deployment. R
 ## Archive Structure
 
 ```
-my-config/BuildInfo.properties
+META-INF/MANIFEST.MF
 my-config/Configuration.xml
 my-config/Data.xml
 my-config/webcontent/index.html
@@ -24,15 +24,6 @@ Rules:
 - Frontend code goes in `<config-name>/webcontent/`
 - Java `.class` files are siblings of the configuration root directory (not inside it)
 
-## BuildInfo.properties
-
-```properties
-configuration.version=1
-configuration.timestamp=20250807-163000
-```
-
-Version information is read from `BuildInfo.properties` in uploaded archives for database deployment.
-
 ## Maven Parent POM
 
 Use the Frank!Framework configuration parent POM to handle packaging automatically:
@@ -41,7 +32,7 @@ Use the Frank!Framework configuration parent POM to handle packaging automatical
 <parent>
     <groupId>org.frankframework</groupId>
     <artifactId>configuration-parent</artifactId>
-    <version>10.1.0</version>
+    <version>10.2.0</version>
 </parent>
 ```
 
