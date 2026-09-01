@@ -59,6 +59,8 @@ const config: Config = {
         ],
     ],
 
+    plugins: ['docusaurus-plugin-matomo'],
+
     themeConfig: {
         // Replace with your project's social card
         image: 'img/docusaurus-social-card.jpg',
@@ -194,6 +196,12 @@ const config: Config = {
                 content: '2D87C4BF471503E1',
             },
         ],
+        matomo: {
+            matomoUrl: 'https://matomo.my.wearefrank.nl/',
+            siteId: '3',
+            phpLoader: 'matomo.php',
+            jsLoader: 'matomo.js',
+        },
     } satisfies Preset.ThemeConfig,
 };
 
