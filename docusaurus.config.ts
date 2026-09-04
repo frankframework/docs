@@ -94,7 +94,7 @@ const config: Config = {
                     position: 'left',
                     items: [
                         {href: 'https://insights.frankframework.org/', label: 'Insights'},
-                        {label: '[Upcomming] Migration Guides', href: '#'},
+                        {label: '[Upcoming] Migration Guides', href: '#'},
                         {href: 'https://frankacademy.nl/', label: 'Frank!Academy'},
                     ],
                 },
@@ -144,7 +144,7 @@ const config: Config = {
                             href: 'https://frankacademy.nl/',
                         },
                         {
-                            label: '[Upcomming] Migration Guides',
+                            label: '[Upcoming] Migration Guides',
                             href: '#',
                         },
                     ],
