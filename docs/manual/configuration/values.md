@@ -72,6 +72,8 @@ The `<Param>` element fetches values for use in pipes and senders. It can access
 - Session keys (`sessionKey` attribute)
 - Context keys (`contextKey` attribute on a session key reference)
 
+In case of a contextKey, the `<Param>` element expects that a Message is provided as input for this param to resolve the contextKey in.
+
 Example reading a context key from `originalMessage`:
 
 ```xml
