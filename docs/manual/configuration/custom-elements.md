@@ -1,8 +1,8 @@
-# Custom Code
+# Custom Elements
 
 ## Overview
 
-Custom Java code can extend the Frank!Framework when standard building blocks are insufficient. Custom pipes integrate with Ladybug reports and Frank!Console flowcharts.
+Custom Java code can extend the Frank!Framework when standard building blocks are insufficient. Custom pipes and senders integrate with Ladybug reports and Frank!Console flowcharts. These elements may be included directly in a configuration or bundled in a `FF! Plugin`. You may start from scratch by implementing one of the 'low level' interfaces or by extending `FixedForwardPipe`, `AbstractSender` or `AbstractSenderWithParameters`.
 
 ## Extending FixedForwardPipe
 
@@ -15,7 +15,7 @@ public PipeRunResult doPipe(Message message, PipeLineSession session) throws Pip
 ## Implementation Template
 
 ```java
-package org.wearefrank.mermaid.dashboard;
+package org.mycomp.package.location;
 
 import org.frankframework.core.PipeLineSession;
 import org.frankframework.core.PipeRunException;
@@ -41,7 +41,8 @@ public class MyCustomPipe extends FixedForwardPipe {
 
 ## Message Class
 
-`org.frankframework.stream.Message` holds input and output data for pipes. Convert to string with `message.asString()`. Create new messages with `new Message(result)`.
+`org.frankframework.stream.Message` holds input and output data for pipes. Convert to string with `message.asString()`, it can also convert to other types such as InputStream, Bytes. Streams are preferrable to reduce the amount of memory required.
+The Message class will handle the conversion for you. Ensure that you wrap the result as a new Message with `new Message(result)`. The input may be any data-type, the 2nd param for Message is a context map with additional data/information.
 
 ## PipeRunResult
 
@@ -98,8 +99,8 @@ Package custom code with the configuration. The code is not accessible by other 
 
 Requirements:
 - Set property `configurations.<configuration name>.allowCustomClasses` to `true`
-- Configuration must be packaged (JAR) — plain directory trees do not work
-- Uses `DirectoryClassLoader` or `JarFileClassLoader` depending on deployment
+- Configuration must be packaged (JAR) — plain directory configurations do not work
+- Uses `DatabaseClassLoader` or `JarFileClassLoader` depending on deployment
 
 ### Shared JAR
 
@@ -121,4 +122,4 @@ This ensures JVM module visibility rules do not prevent classes from accessing e
 ## allowCustomClasses Property
 
 - `configurations.<configname>.allowCustomClasses=true` — enables custom classes for a specific configuration
-- `configurations.allowCustomClasses=true` — enables custom classes globally (for shared JARs in `/opt/frank/resources`)
+- `configurations.allowCustomClasses=true` — enables custom classes globally for all configurations (for shared JARs in `/opt/frank/resources`)
