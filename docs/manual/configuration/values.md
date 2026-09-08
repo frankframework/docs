@@ -1,3 +1,7 @@
+---
+sidebar_position: 3
+---
+
 # Messages and Values
 
 ## Messages in Pipelines

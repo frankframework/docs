@@ -1,3 +1,7 @@
+---
+sidebar_position: 3
+---
+
 # FrankSender and FrankListener
 
 The `FrankSender` sends a message to another Frank!Adapter (or an external program running in the same JVM). It is the modern, preferred way to call one adapter from another and replaces the older `IbisLocalSender` and `IbisJavaSender`.
