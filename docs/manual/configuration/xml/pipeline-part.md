@@ -1,3 +1,7 @@
+---
+sidebar_position: 5
+---
+
 # PipelinePart
 
 A `<PipelinePart>` is a reusable piece of a pipeline stored in its own file, much like an [include](./includes.md) file — but instead of whole adapters it contains a fragment of pipeline (a set of pipes). This lets you factor out a sequence of pipes that is shared between adapters or that you simply want to keep in a separate file for readability.

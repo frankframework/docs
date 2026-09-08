@@ -1,3 +1,7 @@
+---
+sidebar_position: 5
+---
+
 # Webcontent (Frontend Serving)
 
 The Frank!Framework can serve static web content (HTML, CSS, JavaScript) directly from a configuration. This allows building custom frontends that interact with Frank adapters via API calls.

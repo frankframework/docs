@@ -1,3 +1,7 @@
+---
+sidebar_position: 6
+---
+
 # Error Message Formatters
 
 Error message formatters control how the Frank!Framework formats error responses returned by adapters. When a pipeline finishes with a state other than `SUCCESS`, or when an unhandled exception occurs, the error message formatter determines the structure and content of the response sent back to the caller.

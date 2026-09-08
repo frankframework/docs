@@ -1,3 +1,7 @@
+---
+sidebar_position: 2
+---
+
 # Includes
 
 Frank!Framework configurations support including external XML files to promote reuse, reduce duplication, and improve maintainability. This lets you split large configurations across multiple files.

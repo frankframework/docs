@@ -1,3 +1,7 @@
+---
+sidebar_position: 7
+---
+
 # Frank!Flow (Graphical Editor)
 
 Frank!Flow is a browser-based graphical editor for Frank configurations. It provides a drag-and-drop interface to build and edit adapter pipelines visually, as an alternative to writing XML directly.

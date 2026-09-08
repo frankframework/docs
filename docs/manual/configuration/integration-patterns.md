@@ -1,3 +1,7 @@
+---
+sidebar_position: 8
+---
+
 # Integration Patterns and Data Integrity
 
 The Frank!Framework connects applications from different vendors, transforming requests and responses between otherwise incompatible systems. This document covers patterns and features for protecting data integrity during integration.

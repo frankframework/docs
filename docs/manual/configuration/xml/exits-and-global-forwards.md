@@ -1,3 +1,7 @@
+---
+sidebar_position: 4
+---
+
 # Exits and Global Forwards
 
 This page covers advanced pipeline flow control: defining exits, using global forwards to reduce repetition, and structuring pipelines for clarity.

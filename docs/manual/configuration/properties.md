@@ -1,3 +1,7 @@
+---
+sidebar_position: 2
+---
+
 # Properties
 
 Properties are name/value pairs that configure Frank!Framework behaviour and allow Frank configurations to adapt to different deployment environments. For a complete and up-to-date list of all available properties, see the [FF! Reference](https://reference.frankframework.org/#/properties).
