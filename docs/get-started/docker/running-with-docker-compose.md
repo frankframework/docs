@@ -53,6 +53,8 @@ services:
       customViews.FrankFlow.url: http://localhost:8081
       # Enable CORS for local development.
       cors.enforced: "true"
+    volumes:
+      - ./configurations/:/opt/frank/configurations
     develop:
       watch:
         - action: sync
