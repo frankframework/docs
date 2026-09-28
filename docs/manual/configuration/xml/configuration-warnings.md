@@ -37,11 +37,13 @@ For example, to suppress deprecation warnings for a single configuration, add th
 warnings.suppress.deprecated=true
 ```
 
-> [!NOTE]
-> Not every configuration warning is suppressable.
+:::note
+Not every configuration warning is suppressable.
+:::
 
-> [!IMPORTANT]
-> Suppressing warnings hides potentially important information about your configuration. Only suppress a warning after you have verified that the underlying situation is acceptable, and prefer suppressing per configuration rather than globally.
+:::caution
+Suppressing warnings hides potentially important information about your configuration. Only suppress a warning after you have verified that the underlying situation is acceptable, and prefer suppressing per configuration rather than globally.
+:::
 
 ## Adding Your Own Configuration Warnings
 
