@@ -132,7 +132,7 @@ From stage LOC, I say My text is Hello
 
 Properties can also be set as Java system properties via `-Dproperty="value"` on the command line. These override values defined in property files.
 
-The JEXL expressions are also evaluated in XML Configuration files. This can be used for instance for conditional warnings (see also the example above with constructing a URL from parts that will produce an empty URL if no hostname is set):
+The JEXL expressions are also evaluated in XML Configuration files. This can be used for instance for conditional warnings (see [Configuration Warnings](./xml/configuration-warnings.md), and also the example above with constructing a URL from parts that will produce an empty URL if no hostname is set):
 
 ```xml
 <Configuration
