@@ -17,9 +17,9 @@ These framework-generated warnings can be suppressed with dedicated properties. 
 | Property (Suppress Key) | Suppresses | Global Suppression Allowed |
 |---|---|---|
 | `warnings.suppress.sqlInjections` | Warnings about attributes or settings that could make the configuration vulnerable to SQL injection | No |
+| `warnings.suppress.transaction` | Warnings about transaction handling issues | No |
 | `warnings.suppress.deprecated` | Warnings about the use of deprecated elements and attributes | Yes |
 | `warnings.suppress.defaultvalue` | Warnings about attributes that are explicitly set to their default value | Yes |
-| `warnings.suppress.transaction` | Warnings about transaction handling issues | No |
 | `warnings.suppress.integrityCheck` | Warnings about missing message-log / integrity-check configuration | Yes |
 | `warnings.suppress.resultSetHoldability` | Warnings about JDBC result set holdability | Yes |
 | `warnings.suppress.configurations.validation` | Warnings raised during configuration validation | Yes |
@@ -37,6 +37,9 @@ For example, to suppress deprecation warnings for a single configuration, add th
 warnings.suppress.deprecated=true
 ```
 
+> [!NOTE]
+> Not every configuration warning is suppressable.
+
 > [!IMPORTANT]
 > Suppressing warnings hides potentially important information about your configuration. Only suppress a warning after you have verified that the underlying situation is acceptable, and prefer suppressing per configuration rather than globally.
 
@@ -46,10 +49,10 @@ Add a `<ConfigWarning>` child element at the place in `Configuration.xml` where 
 When the `active` attribute evaluates to `true`, the warning is added to the configuration warnings collected during startup. When it evaluates to `false`, the warning is ignored.
 
 ```xml
+<ConfigWarning active="${= StringUtils.isEmpty(remote.url) }">
+  Adapter 'MyAdapter' is disabled because property 'remote.url' is empty
+</ConfigWarning>
 <Adapter name="MyAdapter" active="${= StringUtils.isNotEmpty(remote.url) }">
-  <ConfigWarning active="${= StringUtils.isEmpty(remote.url) }">
-    Adapter 'MyAdapter' is disabled because property 'remote.url' is empty
-  </ConfigWarning>
   <Receiver>
     <ApiListener name="listener" uriPattern="my-service"/>
   </Receiver>
