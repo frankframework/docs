@@ -51,7 +51,7 @@ In this example, `C1 Warning`, `A1 Warning`, and `JL2 Warning` are emitted. `R1 
 Add a `<ConfigWarning>` child element at the place in `Configuration.xml` where you want the warning to belong. Put the warning message in the element body and use `active` to control when it appears.
 
 ```xml
-<Adapter name="MyAdapter" active="${remote.configured}">
+<Adapter name="MyAdapter" active="${= StringUtils.isNotEmpty(remote.url) }">
   <ConfigWarning active="${= StringUtils.isEmpty(remote.url) }">
     Adapter 'MyAdapter' is disabled because property 'remote.url' is empty
   </ConfigWarning>
