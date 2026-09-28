@@ -12,6 +12,35 @@ Use the `<ConfigWarning>` element to add such a warning in `Configuration.xml`. 
 
 The Frank!Framework may throw warnings when deprecated attributes are used or when unsafe attributes are used.
 
+These framework-generated warnings can be suppressed with dedicated properties. Each suppress key can be set to `true` on a specific configuration (as a configuration property) to suppress the corresponding warnings for that configuration. Some keys may also be set globally (for example in `DeploymentSpecifics.properties` or as a Java system property) to suppress the warning for all configurations; keys that are not globally suppressible can only be suppressed per configuration, to prevent important warnings from being hidden application-wide.
+
+| Property (Suppress Key) | Suppresses | Global Suppression Allowed |
+|---|---|---|
+| `warnings.suppress.sqlInjections` | Warnings about attributes or settings that could make the configuration vulnerable to SQL injection | No |
+| `warnings.suppress.deprecated` | Warnings about the use of deprecated elements and attributes | Yes |
+| `warnings.suppress.defaultvalue` | Warnings about attributes that are explicitly set to their default value | Yes |
+| `warnings.suppress.transaction` | Warnings about transaction handling issues | No |
+| `warnings.suppress.integrityCheck` | Warnings about missing message-log / integrity-check configuration | Yes |
+| `warnings.suppress.resultSetHoldability` | Warnings about JDBC result set holdability | Yes |
+| `warnings.suppress.configurations.validation` | Warnings raised during configuration validation | Yes |
+| `warnings.suppress.flow.generation` | Warnings about errors during flow-diagram generation | Yes |
+| `warnings.suppress.multiPasswordKeystore` | Warnings about keystores that use multiple passwords | Yes |
+| `warnings.suppress.xslt.streaming` | Warnings related to XSLT streaming | Yes |
+| `warnings.suppress.xsd.warning` | XSD validation warnings | Yes |
+| `warnings.suppress.xsd.error` | XSD validation errors reported as configuration warnings | Yes |
+| `warnings.suppress.xsd.fatalError` | XSD validation fatal errors reported as configuration warnings | Yes |
+| `warnings.suppress.unsafeAttribute` | Warnings about the use of unsafe attributes | Yes |
+
+For example, to suppress deprecation warnings for a single configuration, add the following to that configuration's properties:
+
+```properties
+warnings.suppress.deprecated=true
+```
+
+:::warning
+Suppressing warnings hides potentially important information about your configuration. Only suppress a warning after you have verified that the underlying situation is acceptable, and prefer suppressing per configuration rather than globally.
+:::
+
 ## Adding Your Own Configuration Warnings
 
 Add a `<ConfigWarning>` child element at the place in `Configuration.xml` where you want the warning to belong. Put the warning message in the element body and use `active` to control when it appears.
