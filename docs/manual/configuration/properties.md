@@ -393,15 +393,9 @@ Properties prefixed with `soap.bus.org.apache.cxf.stax.` configure CXF protectio
 
 All accept integer values. See [CXF Security documentation](https://cxf.apache.org/docs/security.html).
 
-### Custom Console Tabs
+### Custom Views
 
-```properties
-customViews.names=CustomTab
-customViews.CustomTab.name=Custom Tab
-customViews.CustomTab.url=http://localhost:8080
-```
-
-Adds a custom entry to the Frank!Console main menu pointing to the specified URL.
+Add links to pages in the Frank!Console sidebar using custom view properties. See [Custom Views](../operations/custom-views.md) for configuration and navigation behavior.
 
 ## Special Characters in Property Values
 
