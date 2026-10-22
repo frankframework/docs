@@ -395,7 +395,7 @@ All accept integer values. See [CXF Security documentation](https://cxf.apache.o
 
 ### Custom Views
 
-Add links to pages in the Frank!Console sidebar using custom view properties. See [Custom Views](../operations/custom-views.md) for configuration and navigation behavior.
+Add links to pages in the Frank!Console sidebar using custom view properties. See [Custom Views](./custom-views.md) for configuration and navigation behavior.
 
 ## Special Characters in Property Values
 
