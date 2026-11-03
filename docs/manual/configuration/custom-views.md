@@ -1,6 +1,6 @@
 # Custom Views
 
-Custom Views add links to other pages in the sidebar of the Frank!Console. A view can display a page inside the console or open an external page in a new browser tab.
+Custom Views are links to other web pages that are added to the navigation in the sidebar of the FF! Console. A view can display a page inside the console (embedded) or open an external page in a new browser tab.
 
 ## Configure Custom Views
 
@@ -22,4 +22,7 @@ These properties are part of the application properties (appconstants). Set them
 
 ## Open a Custom View
 
-Each view listed in `customViews.names` is added as a navigation option in the Frank!Console sidebar. Selecting a view opens its page inside the console in an iframe, or opens it in a new browser tab if it is an external page.
+Each view listed in `customViews.names` is added as a navigation option in the FF! Console sidebar. The URL determines how the page opens:
+
+- A relative path (without a protocol) to a page in the web-content folder is embedded in the console in an iframe.
+- A URL starting with `http://` or `https://` opens directly in a new browser tab.
