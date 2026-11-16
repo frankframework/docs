@@ -6,7 +6,8 @@ sidebar_position: 8
 
 Frank!Framework offers two ways to validate a message: a **Validator** and a **ValidatorPipe**. Both use the same validation logic (for example, checking a
 message against an XSD). The only difference is **where and when** the validation runs.
-If you check the XSD for configurations, you will see that `XmlInputValidator`, `XmlOutputValidator` and `XmlValidatorPipe` all refer to the same underlying type `XmlValidator`. Depending on which one you use, the framework will run the validation at a different point in time.
+If you check the XSD for configurations, you will see that `XmlInputValidator`, `XmlOutputValidator` and `XmlValidatorPipe` all refer to the same underlying
+type `XmlValidator`. Depending on which one you use, the framework will run the validation at a different point in time.
 
 ## In short
 
@@ -26,9 +27,11 @@ A validator is configured inside the `<Pipeline>`, but is not part of the pipe s
 
 ```xml
 <Pipeline>
-    <XmlInputValidator name="InputValidator"
-                  root="Order"
-                  schema="Order.xsd"/>
+    <XmlInputValidator
+            name="InputValidator"
+            root="Order"
+            schema="Order.xsd"
+    />
     <!-- pipes -->
 </Pipeline>
 ```
@@ -42,9 +45,10 @@ transformation. Use its forwards to send valid and invalid messages to different
 
 ```xml
 <Pipeline>
-    <XmlValidatorPipe name="Validate transformed message"
-                      root="Invoice"
-                      schema="Invoice.xsd">
+    <XmlValidatorPipe
+            name="Validate transformed message"
+            root="Invoice"
+            schema="Invoice.xsd">
         <Forward name="failure" path="InvalidInvoice"/>
     </XmlValidatorPipe>
     <!-- more pipes -->
