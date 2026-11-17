@@ -113,4 +113,7 @@ Wrappers can be used the same way as Validators. They will run before or after t
 
 Keep in mind though, that there's a specific order in which wrappers and validators run. For input, the order is `InputValidator` → `InputWrapper` → first pipe. For output, the order is last pipe → `OutputWrapper` → `OutputValidator`. 
 
+In a Sender pipe, the order in which wrappers and validators are executed is reversed.
+`InputWrapper` -> `InputValidator`; `OutputValidator` -> `OutputWrapper`.
+
 This can be deceiving, since the order you define them in in your configuration doesn't matter, the framework will always run them in the order described above.
